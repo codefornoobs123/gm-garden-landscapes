@@ -1,0 +1,435 @@
+{
+  "contact": {
+    "phone": "07515 341284",
+    "phoneLink": "+447515341284",
+    "email": "gazzo.13@sky.com",
+    "location": "Ferndown, Dorset",
+    "hoursText": "Mon–Fri 8am–4pm",
+    "openingDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "opens": "08:00",
+    "closes": "16:00",
+    "facebook": "https://www.facebook.com/100063790661207",
+    "mapSearch": "Ferndown, Dorset, UK"
+  },
+  "reviews": [
+    {
+      "name": "Tina B",
+      "location": "Ferndown",
+      "text": "Very pleased with the driveway GM Garden Landscapes completed for us. Tidy, efficient and friendly workers with a high level of attention to detail."
+    },
+    {
+      "name": "Geoff R",
+      "location": "West Parley",
+      "text": "GM Garden Landscapes have worked for me for almost 10 years providing maintenance and landscaping services on a weekly basis.\n\nGary the owner is an easy-going person who you can quickly get along with. His enthusiasm and helpfulness stand out and his team’s ability to get jobs done is excellent. Very good communication skills and always tries to accommodate clients wishes with professional suggestions. Totally trustworthy and do not have any hesitation in recommending the team for almost any garden work including irrigation systems.\n\nYou will not be disappointed."
+    }
+  ],
+  "photos": [
+    {
+      "title": "Mottled grey porcelain patio",
+      "location": "",
+      "caption": "Mottled grey porcelain with aged slabs, rustic charcoal edging and graffito grouting. Raised sleeper border in anthracite with Griselinia hedging.",
+      "images": [
+        {
+          "image": "/assets/img/projects/mottled-porcelain/2.jpg"
+        },
+        {
+          "image": "/assets/img/projects/mottled-porcelain/1.jpg"
+        },
+        {
+          "image": "/assets/img/projects/mottled-porcelain/3.jpg"
+        },
+        {
+          "image": "/assets/img/projects/mottled-porcelain/4.jpg"
+        }
+      ]
+    },
+    {
+      "title": "100sqm porcelain patio",
+      "location": "Avon Castle",
+      "caption": "100 sqm porcelain patio with kerb stone border and easy-grout pointing.",
+      "images": [
+        {
+          "image": "/assets/img/projects/avon-castle-patio/3.jpg"
+        },
+        {
+          "image": "/assets/img/projects/avon-castle-patio/1.jpg"
+        },
+        {
+          "image": "/assets/img/projects/avon-castle-patio/2.jpg"
+        },
+        {
+          "image": "/assets/img/projects/avon-castle-patio/4.jpg"
+        },
+        {
+          "image": "/assets/img/projects/avon-castle-patio/5.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Sleeper veggie patch & amphitheatre",
+      "location": "",
+      "caption": "Raised sleeper borders forming a veggie patch and amphitheatre seating, with gravel paths and pergola arch.",
+      "images": [
+        {
+          "image": "/assets/img/projects/sleeper-veggie-patch/4.jpg"
+        },
+        {
+          "image": "/assets/img/projects/sleeper-veggie-patch/1.jpg"
+        },
+        {
+          "image": "/assets/img/projects/sleeper-veggie-patch/2.jpg"
+        },
+        {
+          "image": "/assets/img/projects/sleeper-veggie-patch/3.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Shingle driveway & gate",
+      "location": "",
+      "caption": "Shingle driveway with new swinging gate; raised sleeper border acting as a retaining wall for the flower border.",
+      "images": [
+        {
+          "image": "/assets/img/projects/shingle-driveway/1.jpg"
+        },
+        {
+          "image": "/assets/img/projects/shingle-driveway/2.jpg"
+        },
+        {
+          "image": "/assets/img/projects/shingle-driveway/3.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Enclosed garden & supporting wall",
+      "location": "",
+      "caption": "Supporting wall in Carbon Indian Sandstone, artificial grass and underground drainage.",
+      "images": [
+        {
+          "image": "/assets/img/projects/supporting-wall/1.jpg"
+        },
+        {
+          "image": "/assets/img/projects/supporting-wall/2.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Turfing & levelling",
+      "location": "",
+      "caption": "Gardens cleared, levelled and finished with fresh natural turf.",
+      "images": [
+        {
+          "image": "/assets/img/projects/turfing/1.jpg"
+        },
+        {
+          "image": "/assets/img/projects/turfing/2.jpg"
+        },
+        {
+          "image": "/assets/img/projects/turfing/3.jpg"
+        }
+      ]
+    }
+  ],
+  "beforeAfter": {
+    "feature": {
+      "title": "Garden room patio & fresh turf",
+      "location": "Dorset",
+      "project": "Patio, turf & seating area",
+      "materials": "Porcelain paving & natural turf",
+      "before": "/assets/img/garden-room-patio-turf-before.jpg",
+      "beforeAlt": "Before: bare ground around a new garden room, ready for patio and turf, Dorset",
+      "after": "/assets/img/garden-room-patio-turf-after.jpg",
+      "afterAlt": "After: porcelain patio around a garden room with a new striped lawn, Dorset"
+    },
+    "cards": [
+      {
+        "title": "Fresh turf laid, striped finish",
+        "location": "Christchurch",
+        "before": "/assets/img/new-turf-christchurch-before.jpg",
+        "after": "/assets/img/new-turf-christchurch-after.jpg"
+      },
+      {
+        "title": "Overgrown garden cleared & turfed",
+        "location": "Ferndown",
+        "before": "/assets/img/garden-clearance-turfing-ferndown-before.jpg",
+        "after": "/assets/img/garden-clearance-turfing-ferndown-after.jpg"
+      },
+      {
+        "title": "Worn turf to artificial grass",
+        "location": "Poole",
+        "before": "/assets/img/artificial-grass-poole-before.jpg",
+        "after": "/assets/img/artificial-grass-poole-after.jpg"
+      },
+      {
+        "title": "Overgrown plot cleared & tidied",
+        "location": "Wareham",
+        "before": "/assets/img/garden-clearance-wareham-before.jpg",
+        "after": "/assets/img/garden-clearance-wareham-after.jpg"
+      },
+      {
+        "title": "Cleared & gravelled parking area",
+        "location": "Verwood",
+        "before": "/assets/img/gravel-parking-area-verwood-before.jpg",
+        "after": "/assets/img/gravel-parking-area-verwood-after.jpg"
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "question": "How much does a new patio cost?",
+      "answer": "Every garden is different, so we price each job properly rather than quoting a rate per square metre. What moves the price is access to the garden, the materials you choose, how much preparation the area needs, the location, and whether any plant or equipment has to be hired in. We visit, measure up and give you a fixed written quote — free, with no obligation."
+    },
+    {
+      "question": "Do you offer free quotes?",
+      "answer": "Yes — every quote is free and no-obligation. We visit, measure up, discuss options and follow up with a clear fixed price within a week. No pressure and no charge for the visit."
+    },
+    {
+      "question": "How long does a typical project take?",
+      "answer": "It varies with the size and complexity of the project, the ground conditions and the access we have to work with. We set out a realistic timeline in your written quote before anything starts, so you know where you stand."
+    },
+    {
+      "question": "Are you insured?",
+      "answer": "Yes — we carry £1m public liability insurance and are a registered waste carrier, so all spoil and waste is removed and disposed of legally. We can provide our waste carrier registration number on request."
+    },
+    {
+      "question": "Do you use subcontractors?",
+      "answer": "The landscaping itself is done by our own team. For specialist work such as electrics and plumbing we bring in trusted trades we have worked with for years — but we manage the project from start to finish and stay accountable for it."
+    },
+    {
+      "question": "What areas do you cover?",
+      "answer": "We are based in Ferndown and cover roughly a 30-mile radius — including Bournemouth, Poole, Christchurch, Wimborne, Verwood, Wareham and the surrounding towns. If you are just outside, ask anyway."
+    },
+    {
+      "question": "Do you offer a guarantee?",
+      "answer": "Yes — all our hard landscaping comes with a 12-month workmanship guarantee, set out in writing in your quote. Planting is not covered by a guarantee, as how well plants establish depends on aftercare, weather and soil conditions we cannot control."
+    },
+    {
+      "question": "How do I get started?",
+      "answer": "Either call us on 07515 341284 or fill in the quick quote form on this page. We will be in touch to book your free site visit, and your written quote will follow within a week."
+    }
+  ],
+  "services": [
+    {
+      "name": "Patios & paving",
+      "link": "patios.html"
+    },
+    {
+      "name": "Driveways",
+      "link": "driveways.html"
+    },
+    {
+      "name": "Garden design",
+      "link": "garden-design.html"
+    },
+    {
+      "name": "Decking",
+      "link": "#quote"
+    },
+    {
+      "name": "Fencing",
+      "link": "fencing.html"
+    },
+    {
+      "name": "Planting & turfing",
+      "link": "#quote"
+    },
+    {
+      "name": "Artificial grass",
+      "link": "artificial-grass.html"
+    },
+    {
+      "name": "Drainage & soakaways",
+      "link": "#quote"
+    },
+    {
+      "name": "Sleeper borders",
+      "link": "#quote"
+    },
+    {
+      "name": "Gates",
+      "link": "fencing.html"
+    },
+    {
+      "name": "Shed & summer house bases",
+      "link": "#quote"
+    },
+    {
+      "name": "Garden maintenance",
+      "link": "#quote"
+    }
+  ],
+  "areas": [
+    {
+      "name": "Ferndown",
+      "link": "landscaper-ferndown.html"
+    },
+    {
+      "name": "Wimborne",
+      "link": "#quote"
+    },
+    {
+      "name": "Verwood",
+      "link": "landscaper-verwood.html"
+    },
+    {
+      "name": "Bournemouth",
+      "link": "#quote"
+    },
+    {
+      "name": "Christchurch",
+      "link": "landscaper-christchurch.html"
+    },
+    {
+      "name": "Poole",
+      "link": "landscaper-poole.html"
+    },
+    {
+      "name": "Wareham",
+      "link": "landscaper-wareham.html"
+    },
+    {
+      "name": "Blandford Forum",
+      "link": "#quote"
+    }
+  ],
+  "pageText": {
+    "hero": {
+      "kicker": "Landscape gardeners in Ferndown & Dorset",
+      "headlineLine1": "Gardens redrawn.",
+      "headlineLine2": "Ground rebuilt to last.",
+      "subtext": "Expert patios, driveways and garden transformations across Bournemouth, Poole and East Dorset — designed properly, built by our own team, and guaranteed for 12 months.",
+      "primaryButton": "Get my free quote",
+      "secondaryButton": "See recent work",
+      "badge1": "Fully insured",
+      "badge2": "12-month guarantee",
+      "image": "/assets/img/sandstone-patio-composite-fencing.jpg",
+      "imageAlt": "Sandstone patio with white pebble borders, tree ferns and grey composite fencing"
+    },
+    "stats": [
+      {
+        "number": 17,
+        "suffix": "yrs",
+        "label": "Established"
+      },
+      {
+        "number": 240,
+        "suffix": "+",
+        "label": "Large projects"
+      },
+      {
+        "number": 1000,
+        "suffix": "+",
+        "label": "Smaller projects"
+      },
+      {
+        "number": 30,
+        "suffix": "mi",
+        "label": "Coverage radius"
+      }
+    ],
+    "video": {
+      "show": true,
+      "eyebrow": "On film",
+      "heading": "See a finished project",
+      "text": "A short walkthrough of one of our completed projects at Ocean Village Marina, Southampton — the finished result, in full.",
+      "facebookVideoUrl": "https://www.facebook.com/100063790661207/videos/1283085960207935/"
+    },
+    "work": {
+      "eyebrow": "Our work",
+      "heading": "Proof, not promises.",
+      "moreHeading": "More transformations",
+      "finishedHeading": "The finished result",
+      "finishedNote": "Recent projects from our portfolio. Click one to browse its photos."
+    },
+    "about": {
+      "eyebrow": "Our story",
+      "heading": "A local team that treats your garden",
+      "headingHighlight": "like our own.",
+      "paragraphs": "GM Garden Landscapes started in 2009 with one van, a digger and a simple idea: do proper landscaping, properly. No disappearing halfway through a job, no mess left behind.\n\nToday we're a tight team of qualified landscapers based in Ferndown, covering Bournemouth, Poole and the surrounding towns — but the standard hasn't changed. Every project gets a real design, a fixed timeline and a 12-month workmanship guarantee.",
+      "values": [
+        {
+          "title": "Built by us",
+          "text": "Our own team on the ground, every job"
+        },
+        {
+          "title": "Straight talking",
+          "text": "Honest advice, fixed quotes"
+        },
+        {
+          "title": "Done once, done right",
+          "text": "Materials and methods that last"
+        }
+      ],
+      "button": "Work with us"
+    },
+    "reviews": {
+      "eyebrow": "In their words",
+      "heading": "What our customers say."
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "heading": "Questions homeowners ask us most.",
+      "intro": "Can't see your question? Call us on {phone} — happy to help, no hard sell."
+    },
+    "quote": {
+      "eyebrow": "Free no-obligation quote",
+      "heading": "Let's price up your project.",
+      "intro": "Tell us a little about your garden and we'll be in touch to book your free site visit. It takes about 60 seconds.",
+      "points": [
+        "Free, no-obligation quotation",
+        "Fixed price — no day-rate surprises",
+        "Written quote within a week"
+      ]
+    },
+    "footer": {
+      "blurb": "Landscape design and build across Dorset. Designed properly, built by our own team, guaranteed for 12 months.",
+      "badges": [
+        "Insured",
+        "Guaranteed",
+        "Licensed waste"
+      ]
+    }
+  },
+  "advanced": {
+    "company": {
+      "name": "GM Garden Landscapes",
+      "foundingYear": "2009",
+      "region": "Dorset",
+      "country": "GB",
+      "latitude": 50.806,
+      "longitude": -1.899,
+      "priceRange": "££-£££",
+      "description": "Landscape gardeners based in Ferndown, Dorset. Patios, driveways, fencing, turfing, artificial grass and garden design across Bournemouth, Poole, Wimborne and East Dorset."
+    },
+    "menu": [
+      {
+        "label": "Our work",
+        "link": "#work"
+      },
+      {
+        "label": "About",
+        "link": "#about"
+      },
+      {
+        "label": "FAQ",
+        "link": "#faq"
+      }
+    ],
+    "seo": {
+      "title": "Landscaper in Ferndown & Dorset | GM Garden Landscapes",
+      "description": "Landscape gardeners in Ferndown, covering Bournemouth, Poole, Wimborne & Dorset. Patios, driveways, fencing & turfing. Free quotes, 12-month guarantee.",
+      "shareTitle": "Landscaper in Ferndown & Dorset | GM Garden Landscapes",
+      "shareDescription": "Ferndown landscape gardeners covering Bournemouth, Poole & Dorset. Patios, driveways, fencing and turf. Free quotes, 12-month guarantee.",
+      "shareImage": "/assets/img/og-image.jpg"
+    },
+    "analytics": {
+      "googleAnalyticsId": ""
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<a href="tel:{{ gm.contact.phoneLink | h }}" class="float-call" aria-label="Call us"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+<a href="{{ navPrefix }}#quote" class="float-quote">Free quote</a>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg></button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6l6 6"/></svg></button>
+  <button class="lb-next" id="lbNext" aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"/></svg></button>
+  <figure class="lb-fig">
+    <div class="lb-view">
+      <div class="lb-track" id="lbTrack">
+        <div class="lb-slide"><img id="lbPrevImg" alt="" aria-hidden="true" decoding="async"></div>
+        <div class="lb-slide"><img id="lbImg" alt="" decoding="async"></div>
+        <div class="lb-slide"><img id="lbNextImg" alt="" aria-hidden="true" decoding="async"></div>
+      </div>
+    </div>
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+</div>

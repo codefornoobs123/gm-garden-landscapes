@@ -1,0 +1,313 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/assets/img"
+public_folder: "/assets/img"
+
+site_url: https://gmgardenlandscapes.netlify.app
+display_url: https://gmgardenlandscapes.netlify.app
+logo_url: /assets/img/logo-icon.png
+
+editor:
+  preview: false
+
+collections:
+  - name: website
+    label: "🌿 Website"
+    description: "Everything on the GM Garden Landscapes homepage. Change what you need, then press Publish (top right). The site updates in about 2 minutes."
+    files:
+      - name: content
+        label: "🏡 Homepage & contact details"
+        file: "content.json"
+        format: json
+        fields:
+          # ───────────────────────────────── 📞 Contact
+          - label: "📞 Phone, email & opening hours"
+            name: contact
+            widget: object
+            collapsed: true
+            hint: "These show on every page of the website – header, footer, buttons and Google."
+            fields:
+              - { label: "Phone number (as people see it)", name: phone, widget: string, hint: "e.g. 07515 341284" }
+              - { label: "Phone number for the 'Call' buttons", name: phoneLink, widget: string, hint: "Same number in international format with no spaces, e.g. +447515341284", pattern: ['^\+44\d{9,10}$', "Start with +44 and use no spaces, e.g. +447515341284"] }
+              - { label: "Email address", name: email, widget: string, hint: "Where customers can email you. Quote-form enquiries are set up separately in Netlify." }
+              - { label: "Where you're based", name: location, widget: string, hint: "e.g. Ferndown, Dorset" }
+              - { label: "Opening hours (as people see them)", name: hoursText, widget: string, hint: "e.g. Mon–Fri 8am–4pm" }
+              - label: "Days you're open (for Google)"
+                name: openingDays
+                widget: select
+                multiple: true
+                options: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+              - { label: "Opening time (for Google, 24-hour)", name: opens, widget: string, hint: "e.g. 08:00", pattern: ['^\d{2}:\d{2}$', "Use 24-hour time like 08:00"] }
+              - { label: "Closing time (for Google, 24-hour)", name: closes, widget: string, hint: "e.g. 16:00", pattern: ['^\d{2}:\d{2}$', "Use 24-hour time like 16:00"] }
+              - { label: "Facebook page link", name: facebook, widget: string, required: false }
+              - { label: "Map location", name: mapSearch, widget: string, hint: "What the map on the quote section searches for, e.g. Ferndown, Dorset, UK" }
+
+          # ───────────────────────────────── ⭐ Reviews
+          - label: "⭐ Customer reviews"
+            name: reviews
+            widget: list
+            collapsed: true
+            label_singular: "review"
+            summary: "{{fields.name}} – {{fields.location}}"
+            hint: "Only add real reviews from real customers."
+            fields:
+              - { label: "Customer name", name: name, widget: string, hint: "First name and initial is fine, e.g. Tina B" }
+              - { label: "Town", name: location, widget: string }
+              - { label: "What they said", name: text, widget: text, hint: "Leave a blank line between paragraphs." }
+
+          # ───────────────────────────────── 📸 Photos
+          - label: "📸 Photos of our work"
+            name: photos
+            widget: list
+            collapsed: true
+            label_singular: "project"
+            summary: "{{fields.title}}"
+            hint: "The 'finished result' gallery. Each project can have several photos – the first one is the cover."
+            fields:
+              - { label: "Project name", name: title, widget: string }
+              - { label: "Town (optional)", name: location, widget: string, required: false }
+              - { label: "Short description", name: caption, widget: text }
+              - label: "Photos"
+                name: images
+                widget: list
+                collapsed: true
+                label_singular: "photo"
+                summary: "{{fields.image}}"
+                hint: "Landscape photos look best. Drag to reorder."
+                fields:
+                  - { label: "Photo", name: image, widget: image, choose_url: false }
+
+          # ───────────────────────────────── 🔁 Before & after
+          - label: "🔁 Before & after"
+            name: beforeAfter
+            widget: object
+            collapsed: true
+            hint: "The before/after sliders. Use two photos taken from the same spot."
+            fields:
+              - label: "Big featured one"
+                name: feature
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Title", name: title, widget: string }
+                  - { label: "Town", name: location, widget: string }
+                  - { label: "What we did", name: project, widget: string }
+                  - { label: "Materials", name: materials, widget: string }
+                  - { label: "Before photo", name: before, widget: image, choose_url: false }
+                  - { label: "Before photo description (for Google & screen readers)", name: beforeAlt, widget: string }
+                  - { label: "After photo", name: after, widget: image, choose_url: false }
+                  - { label: "After photo description (for Google & screen readers)", name: afterAlt, widget: string }
+              - label: "Smaller ones"
+                name: cards
+                widget: list
+                collapsed: true
+                label_singular: "before & after"
+                summary: "{{fields.title}} – {{fields.location}}"
+                fields:
+                  - { label: "Title", name: title, widget: string }
+                  - { label: "Town", name: location, widget: string }
+                  - { label: "Before photo", name: before, widget: image, choose_url: false }
+                  - { label: "After photo", name: after, widget: image, choose_url: false }
+
+          # ───────────────────────────────── ❓ FAQs
+          - label: "❓ Questions & answers"
+            name: faqs
+            widget: list
+            collapsed: true
+            label_singular: "question"
+            summary: "{{fields.question}}"
+            hint: "These also show in Google search results. Type {phone} anywhere to insert your phone number automatically."
+            fields:
+              - { label: "Question", name: question, widget: string }
+              - { label: "Answer", name: answer, widget: text }
+
+          # ───────────────────────────────── 🛠️ Services
+          - label: "🛠️ Services"
+            name: services
+            widget: list
+            collapsed: true
+            label_singular: "service"
+            summary: "{{fields.name}}"
+            hint: "The services list in the footer (and for Google)."
+            fields:
+              - { label: "Service", name: name, widget: string }
+              - { label: "Link", name: link, widget: string, hint: "Page it opens, e.g. patios.html. Use #quote to jump to the quote form instead." }
+
+          # ───────────────────────────────── 📍 Areas
+          - label: "📍 Areas we cover"
+            name: areas
+            widget: list
+            collapsed: true
+            label_singular: "area"
+            summary: "{{fields.name}}"
+            hint: "The towns list in the footer (and for Google)."
+            fields:
+              - { label: "Town", name: name, widget: string }
+              - { label: "Link", name: link, widget: string, hint: "Page it opens, e.g. landscaper-poole.html. Use #quote to jump to the quote form instead." }
+
+          # ───────────────────────────────── 📄 Page text
+          - label: "📄 Page text"
+            name: pageText
+            widget: object
+            collapsed: true
+            hint: "The wording on each part of the homepage, top to bottom."
+            fields:
+              - label: "Top of the page (big photo)"
+                name: hero
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Small line above the headline", name: kicker, widget: string }
+                  - { label: "Headline – line 1", name: headlineLine1, widget: string }
+                  - { label: "Headline – line 2 (in green)", name: headlineLine2, widget: string }
+                  - { label: "Text under the headline", name: subtext, widget: text }
+                  - { label: "Main button", name: primaryButton, widget: string }
+                  - { label: "Second button", name: secondaryButton, widget: string }
+                  - { label: "Tick badge 1", name: badge1, widget: string }
+                  - { label: "Tick badge 2", name: badge2, widget: string }
+                  - { label: "Big background photo", name: image, widget: image, choose_url: false, hint: "A wide, landscape photo works best." }
+                  - { label: "Photo description (for Google & screen readers)", name: imageAlt, widget: string }
+              - label: "Counting numbers"
+                name: stats
+                widget: list
+                collapsed: true
+                label_singular: "number"
+                summary: "{{fields.number}}{{fields.suffix}} – {{fields.label}}"
+                hint: "The 4 numbers that count up. Four looks best."
+                fields:
+                  - { label: "Number", name: number, widget: number, value_type: int, min: 0 }
+                  - { label: "After the number", name: suffix, widget: string, required: false, hint: "e.g. + or yrs or mi" }
+                  - { label: "Label", name: label, widget: string }
+              - label: "Video"
+                name: video
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Show the video section", name: show, widget: boolean }
+                  - { label: "Small heading", name: eyebrow, widget: string }
+                  - { label: "Heading", name: heading, widget: string }
+                  - { label: "Text", name: text, widget: text }
+                  - { label: "Facebook video link", name: facebookVideoUrl, widget: string, hint: "Open the video on Facebook and copy the link from the address bar." }
+              - label: "Our work section"
+                name: work
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Small heading", name: eyebrow, widget: string }
+                  - { label: "Heading", name: heading, widget: string }
+                  - { label: "Heading above the smaller before & afters", name: moreHeading, widget: string }
+                  - { label: "Heading above the photo gallery", name: finishedHeading, widget: string }
+                  - { label: "Note under the gallery heading", name: finishedNote, widget: string }
+              - label: "About us"
+                name: about
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Small heading", name: eyebrow, widget: string }
+                  - { label: "Heading", name: heading, widget: string }
+                  - { label: "Heading – end part (in green)", name: headingHighlight, widget: string }
+                  - { label: "Text", name: paragraphs, widget: text, hint: "Leave a blank line between paragraphs." }
+                  - label: "Three selling points"
+                    name: values
+                    widget: list
+                    collapsed: true
+                    label_singular: "selling point"
+                    summary: "{{fields.title}}"
+                    hint: "Keep to three – each has its own icon."
+                    fields:
+                      - { label: "Title", name: title, widget: string }
+                      - { label: "Text", name: text, widget: string }
+                  - { label: "Button", name: button, widget: string }
+              - label: "Reviews section"
+                name: reviews
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Small heading", name: eyebrow, widget: string }
+                  - { label: "Heading", name: heading, widget: string }
+              - label: "Questions section"
+                name: faq
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Small heading", name: eyebrow, widget: string }
+                  - { label: "Heading", name: heading, widget: string }
+                  - { label: "Intro text", name: intro, widget: text, hint: "Type {phone} to insert your phone number automatically." }
+              - label: "Quote form section"
+                name: quote
+                widget: object
+                collapsed: true
+                hint: "Just the wording – the form itself stays the same."
+                fields:
+                  - { label: "Small heading", name: eyebrow, widget: string }
+                  - { label: "Heading", name: heading, widget: string }
+                  - { label: "Intro text", name: intro, widget: text }
+                  - label: "Tick points"
+                    name: points
+                    widget: list
+                    collapsed: true
+                    label_singular: "point"
+                    summary: "{{fields.point}}"
+                    field: { label: "Point", name: point, widget: string }
+              - label: "Footer"
+                name: footer
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Short description", name: blurb, widget: text }
+                  - label: "Badges"
+                    name: badges
+                    widget: list
+                    collapsed: true
+                    label_singular: "badge"
+                    summary: "{{fields.badge}}"
+                    field: { label: "Badge", name: badge, widget: string }
+
+          # ───────────────────────────────── ⚙️ Advanced
+          - label: "⚙️ Advanced (company, menu, Google)"
+            name: advanced
+            widget: object
+            collapsed: true
+            hint: "You rarely need to change these."
+            fields:
+              - label: "Company & legal details"
+                name: company
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Company name", name: name, widget: string, hint: "Shows in the header, footer and on every page." }
+                  - { label: "Year started", name: foundingYear, widget: string, pattern: ['^\d{4}$', "Four-digit year, e.g. 2009"] }
+                  - { label: "County", name: region, widget: string }
+                  - { label: "Country code", name: country, widget: string, hint: "GB" }
+                  - { label: "Map latitude", name: latitude, widget: number, value_type: float }
+                  - { label: "Map longitude", name: longitude, widget: number, value_type: float }
+                  - { label: "Price range (for Google)", name: priceRange, widget: string }
+                  - { label: "Business description (for Google)", name: description, widget: text }
+              - label: "Top menu"
+                name: menu
+                widget: list
+                collapsed: true
+                label_singular: "menu link"
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Text", name: label, widget: string }
+                  - { label: "Link", name: link, widget: string, hint: "#work, #about, #faq or #quote jump to that part of the homepage." }
+              - label: "Google search listing"
+                name: seo
+                widget: object
+                collapsed: true
+                hint: "How the homepage looks in Google and when shared on Facebook/WhatsApp."
+                fields:
+                  - { label: "Page title (blue link in Google)", name: title, widget: string, hint: "Up to 60 characters.", pattern: ['^.{0,60}$', "Keep it to 60 characters or fewer"] }
+                  - { label: "Description (grey text in Google)", name: description, widget: text, hint: "Up to 155 characters.", pattern: ['^.{0,155}$', "Keep it to 155 characters or fewer"] }
+                  - { label: "Title when shared", name: shareTitle, widget: string, pattern: ['^.{0,60}$', "Keep it to 60 characters or fewer"] }
+                  - { label: "Description when shared", name: shareDescription, widget: text, pattern: ['^.{0,155}$', "Keep it to 155 characters or fewer"] }
+                  - { label: "Picture when shared", name: shareImage, widget: image, choose_url: false, hint: "1200 × 630 pixels works best." }
+              - label: "Analytics"
+                name: analytics
+                widget: object
+                collapsed: true
+                fields:
+                  - { label: "Google Analytics ID", name: googleAnalyticsId, widget: string, required: false, hint: "Starts with G-. Leave empty for no tracking." }

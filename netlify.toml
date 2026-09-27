@@ -1,0 +1,17 @@
+[build]
+  command = "npx @11ty/eleventy"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Images moved from /img/ to /assets/img/ – keep old links (and Google Images) working
+[[redirects]]
+  from = "/img/*"
+  to = "/assets/img/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/og-image.jpg"
+  to = "/assets/img/og-image.jpg"
+  status = 301

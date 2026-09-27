@@ -1,0 +1,3 @@
+{% if gm.advanced.analytics.googleAnalyticsId %}<script async src="https://www.googletagmanager.com/gtag/js?id={{ gm.advanced.analytics.googleAnalyticsId | h }}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',{{ gm.advanced.analytics.googleAnalyticsId | js }});</script>
+{% endif %}
