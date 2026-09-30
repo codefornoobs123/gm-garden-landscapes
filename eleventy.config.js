@@ -11,10 +11,15 @@ const CONTENT = path.join(__dirname, "content.json");
 // Only on Netlify builds – local dev keeps the plain files so `npm start` works offline.
 const USE_CDN = process.env.NETLIFY === "true";
 // Smaller sizes come from the CDN; the largest is the original file, which these leafy photos already compress best as.
-const CDN_WIDTHS = [480, 800, 1200];
-const isPhoto = (u) => /^\/assets\/img\/(?!logo-icon|favicon|apple-touch).+\.(jpe?g|png)$/i.test(u);
+// Photos are ~1600px wide; list any bigger originals here so their in-between sizes come from the CDN too.
+const CDN_WIDTHS = [480, 800, 1200, 1600];
+const ORIG_WIDTH = { "/assets/img/ivy-drape.webp": 2400 };
+const isPhoto = (u) => /^\/assets\/img\/(?!logo-icon|favicon|apple-touch).+\.(jpe?g|png|webp)$/i.test(u);
 const cdn = (u, w) => `/.netlify/images?url=${encodeURIComponent(u)}&amp;w=${w}&amp;q=60`;
-const srcset = (u) => [...CDN_WIDTHS.map((w) => `${cdn(u, w)} ${w}w`), `${u} 1600w`].join(", ");
+const srcset = (u) => {
+  const ow = ORIG_WIDTH[u] || 1600;
+  return [...CDN_WIDTHS.filter((w) => w < ow).map((w) => `${cdn(u, w)} ${w}w`), `${u} ${ow}w`].join(", ");
+};
 function sizesFor(tag) {
   if (/fetchpriority="high"|class="ivy-drape"/.test(tag)) return "100vw";
   if (/class="ba-img/.test(tag)) return "(max-width:768px) 100vw, 60vw";
