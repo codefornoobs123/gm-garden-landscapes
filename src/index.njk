@@ -156,20 +156,28 @@ permalink: /index.html
 
 <section class="section" id="reviews">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">{{ gm.pageText.reviews.eyebrow | h }}</span>
-      <h2>{{ gm.pageText.reviews.heading | h }}</h2>
+    <div class="rev-head reveal">
+      <div class="section-head">
+        <span class="eyebrow">{{ gm.pageText.reviews.eyebrow | h }}</span>
+        <h2>{{ gm.pageText.reviews.heading | h }}</h2>
+      </div>
+      <div class="rev-nav">
+        <button type="button" class="rev-btn" id="revPrev" aria-label="Previous review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button type="button" class="rev-btn" id="revNext" aria-label="Next review"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
     </div>
-    <div class="rev-grid">
-{% for r in gm.reviews %}      <figure class="rev-card reveal d{{ loop.index0 % 4 + 1 }}">
-        <span class="rev-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote>
-{% for p in r.text | paras %}          <p>{{ p | h }}</p>
-{% endfor %}        </blockquote>
-        <figcaption class="rev-by"><strong>{{ r.name | h }}</strong><span>{{ r.location | h }}</span></figcaption>
-      </figure>
-{% endfor %}    </div>
   </div>
+  <div class="rev-track reveal d1" id="revTrack" tabindex="0" role="region" aria-label="Customer reviews">
+{% for r in gm.reviews %}{% set stars = r.rating or 5 %}    <figure class="rev-card">
+      <div class="rev-stars" role="img" aria-label="{{ stars }} out of 5 stars">{% for i in range(0, 5) %}<svg viewBox="0 0 24 24" class="{{ 'on' if i < stars else 'off' }}" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.5L12 17.3 6.1 20.5l1.3-6.5L2.5 9.4l6.6-.8z"/></svg>{% endfor %}</div>
+      <blockquote class="rev-body">
+{% for p in r.text | paras %}        <p>{{ p | h }}</p>
+{% endfor %}      </blockquote>
+      <button type="button" class="rev-more" hidden aria-expanded="false">Read more</button>
+      <figcaption class="rev-by"><span class="rev-av" aria-hidden="true">{{ r.name | first | h }}</span><span class="rev-who"><strong>{{ r.name | h }}</strong><span>{{ r.location | h }}</span></span></figcaption>
+    </figure>
+{% endfor %}  </div>
+  <div class="wrap"><div class="rev-dots" id="revDots" aria-hidden="true"></div></div>
 </section>
 
 
@@ -700,6 +708,42 @@ $$('.btn-primary,.btn-dark').forEach(b=>b.addEventListener('click',function(e){
 })();
 
 
+</script>
+<script>
+// === Reviews carousel ===
+(function(){
+  var track=document.getElementById('revTrack'); if(!track) return;
+  var cards=[].slice.call(track.querySelectorAll('.rev-card'));
+  var prev=document.getElementById('revPrev'), next=document.getElementById('revNext'), dots=document.getElementById('revDots');
+  function measure(){
+    cards.forEach(function(c){
+      if(c.classList.contains('open')) return;
+      var body=c.querySelector('.rev-body');
+      c.querySelector('.rev-more').hidden=body.scrollHeight<=body.clientHeight+4;
+    });
+  }
+  cards.forEach(function(c){
+    var btn=c.querySelector('.rev-more');
+    btn.addEventListener('click',function(){
+      var open=c.classList.toggle('open'); btn.setAttribute('aria-expanded',open); btn.textContent=open?'Show less':'Read more';
+    });
+  });
+  function step(){ return cards.length>1 ? cards[1].offsetLeft-cards[0].offsetLeft : track.clientWidth; }
+  prev.addEventListener('click',function(){ track.scrollBy({left:-step(),behavior:'smooth'}); });
+  next.addEventListener('click',function(){ track.scrollBy({left:step(),behavior:'smooth'}); });
+  cards.forEach(function(){ dots.appendChild(document.createElement('span')); });
+  function update(){
+    var max=track.scrollWidth-track.clientWidth, x=track.scrollLeft, scrollable=max>4;
+    prev.parentNode.classList.toggle('hide',!scrollable); dots.classList.toggle('hide',!scrollable);
+    prev.disabled=x<=4; next.disabled=x>=max-4;
+    var i=x>=max-4 ? cards.length-1 : Math.round(x/Math.max(1,step()));
+    [].forEach.call(dots.children,function(d,j){ d.classList.toggle('on',j===i); });
+  }
+  track.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',function(){ measure(); update(); });
+  measure(); update();
+  if(document.fonts) document.fonts.ready.then(function(){ measure(); update(); });
+})();
 </script>
 <script>var _y=document.getElementById("yr");if(_y)_y.textContent=new Date().getFullYear();</script>
 <script>

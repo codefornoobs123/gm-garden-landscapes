@@ -198,11 +198,13 @@
     {
       "name": "Tina B",
       "location": "Ferndown",
+      "rating": 5,
       "text": "Very pleased with the driveway GM Garden Landscapes completed for us. Tidy, efficient and friendly workers with a high level of attention to detail."
     },
     {
       "name": "Geoff R",
       "location": "West Parley",
+      "rating": 5,
       "text": "GM Garden Landscapes have worked for me for almost 10 years providing maintenance and landscaping services on a weekly basis.\n\nGary the owner is an easy-going person who you can quickly get along with. His enthusiasm and helpfulness stand out and his team’s ability to get jobs done is excellent. Very good communication skills and always tries to accommodate clients wishes with professional suggestions. Totally trustworthy and do not have any hesitation in recommending the team for almost any garden work including irrigation systems.\n\nYou will not be disappointed."
     }
   ],

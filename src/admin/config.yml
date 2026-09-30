@@ -55,6 +55,7 @@ collections:
             fields:
               - { label: "Customer name", name: name, widget: string, hint: "First name and initial is fine, e.g. Tina B" }
               - { label: "Town", name: location, widget: string }
+              - { label: "Stars (1-5)", name: rating, widget: number, value_type: int, min: 1, max: 5, default: 5 }
               - { label: "What they said", name: text, widget: text, hint: "Leave a blank line between paragraphs." }
 
           # ───────────────────────────────── 📸 Photos
