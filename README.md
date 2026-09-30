@@ -11,6 +11,7 @@ Edit the site: https://gmgardenlandscapes.netlify.app/admin/
 - **Decap CMS** (`src/admin/`) edits `content.json` through Netlify Identity + Git Gateway.
   Gary logs in at `/admin`, presses **Publish**, Decap commits to GitHub, Netlify rebuilds (~2 min).
 - Service and town pages (`src/patios.njk`, `src/landscaper-*.njk` …) have fixed wording – edit those files directly.
+- Styles: `src/_includes/site.css` is shared by every page; `src/_includes/pages.css` adds the extras for the service and town pages. Both are inlined at build time.
 - `privacy.html`, `terms.html`, `cookies.html` and `404.html` are copied as-is.
 - Images live in `src/assets/img/` (uploads from the CMS land there too). Old `/img/…` links redirect (see `netlify.toml`).
 - The quote form is a Netlify Form (`name="quote"`, honeypot `bot-field`) in `src/index.njk` – don't rename it.

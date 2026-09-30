@@ -1,0 +1,60 @@
+  /* Extra styles for the service & town pages – loaded after site.css on those pages only. */
+
+  /* Single customer quote (older card style). Scoped to .rev-grid so it
+     doesn't pick up the homepage carousel's .rev-card rules. */
+  .rev-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;align-items:start;}
+  .rev-grid .rev-card{position:relative;display:block;flex:0 1 auto;flex-direction:row;min-height:auto;scroll-snap-align:none;background:var(--cream-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(26px,3vw,38px);box-shadow:var(--shadow-sm);}
+  @media(hover:hover){ .rev-grid .rev-card:hover{transform:none;box-shadow:var(--shadow-sm);} }
+  .rev-mark{font-family:var(--serif);font-size:64px;line-height:1;color:var(--moss);opacity:.45;height:34px;display:block;}
+  .rev-grid .rev-card p{font-family:var(--serif);font-size:clamp(16px,1.25vw,18px);line-height:1.62;color:var(--txt);}
+  .rev-grid .rev-card p + p{margin-top:14px;}
+  .rev-grid .rev-by{display:flex;align-items:center;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line);}
+  .rev-grid .rev-by strong{font-family:var(--sans);font-weight:600;font-size:15px;color:var(--txt);}
+  .rev-grid .rev-by span{font-family:var(--sans);font-size:13px;color:var(--txt-mut);}
+  .rev-grid .rev-by span::before{content:"·";margin-right:8px;}
+  .rev-note{margin-top:26px;font-size:13.5px;color:var(--txt-mut);}
+  @media(max-width:768px){
+    .rev-grid{grid-template-columns:1fr;gap:18px;}
+  }
+
+  /* ── Service & area pages (generated) ── */
+  .hero.page-hero{height:auto;min-height:74vh;}
+  .page-hero .hero-in{height:auto;min-height:74vh;align-items:center;padding-top:clamp(96px,14vh,140px);padding-bottom:clamp(56px,9vh,96px);}
+  .page-hero .hero-ctas{margin-bottom:30px;}
+  .crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.7);margin-bottom:22px;}
+  .crumbs a{color:rgba(255,255,255,.9);border-bottom:1px solid rgba(255,255,255,.3);}
+  .crumbs a:hover{color:#fff;border-bottom-color:#fff;}
+  .has-ivy > .wrap{position:relative;z-index:1;}
+  .has-ivy .about-text{background:rgba(28,29,24,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:clamp(22px,3vw,36px);border-radius:var(--r-lg);}
+  .page-intro{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(30px,5vw,64px);align-items:start;}
+  .page-intro .about-text{max-width:none;}
+  .about-text h3{font-size:clamp(20px,2.4vw,24px);margin:30px 0 10px;}
+  .about-text a,.faq-a a,.areas-note a{color:var(--moss);font-weight:600;border-bottom:1px solid currentColor;}
+  .incl-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(24px,3vw,34px);box-shadow:var(--shadow);position:sticky;top:100px;}
+  .incl-card h3{font-size:22px;margin-bottom:18px;}
+  .incl-card .svc-incl{grid-template-columns:1fr;gap:12px;margin-bottom:26px;}
+  .incl-card .svc-incl li{font-size:15px;}
+  .incl-card .svc-incl a{border-bottom:1px solid var(--line-strong);}
+  .incl-card .svc-incl a:hover{color:var(--moss);border-bottom-color:var(--moss);}
+  .incl-card .btn{width:100%;justify-content:center;}
+  .proj-copy{color:var(--txt-mut);font-size:15.5px;line-height:1.6;margin:0 0 18px;}
+  .ba-feature > .fcard{aspect-ratio:3/4;}
+  .proj-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;}
+  .ba-info .proj-actions .btn{margin-top:0;align-self:auto;}
+  .rev-grid.single{grid-template-columns:1fr;max-width:760px;}
+  .process-sec .timeline{max-width:760px;}
+  .tl-dot{font-family:var(--serif);font-weight:600;}
+  .links-sec{padding:clamp(56px,8vw,100px) 0;}
+  .links-h{font-size:clamp(20px,2.4vw,24px);margin:0 0 16px;}
+  .links-h:not(:first-of-type){margin-top:40px;}
+  .areas-note{text-align:left;}
+  .cta-band .section-head{margin-bottom:28px;}
+  .cta-band .hero-ctas{justify-content:center;margin-bottom:0;}
+  @media(max-width:900px){.page-intro{grid-template-columns:1fr;}.incl-card{position:static;}}
+  @media(max-width:480px){
+    .page-hero .hero-in{min-height:0;padding-top:72px;padding-bottom:56px;}
+    .crumbs{font-size:12px;margin-bottom:16px;}
+    .ba-feature > .fcard{aspect-ratio:4/5;}
+    .proj-actions .btn{width:100%;justify-content:center;min-height:50px;}
+    .cta-band .hero-ctas .btn{width:100%;}
+  }
