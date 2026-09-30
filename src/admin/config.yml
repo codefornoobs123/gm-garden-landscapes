@@ -49,14 +49,27 @@ collections:
             name: reviews
             widget: list
             collapsed: true
+            add_to_top: true
             label_singular: "review"
-            summary: "{{fields.name}} – {{fields.location}}"
-            hint: "Only add real reviews from real customers."
+            summary: "{{fields.rating}}★  {{fields.name}} – {{fields.location}}"
+            hint: >-
+              To add one: press 'Add review' below, fill in the boxes, then press Publish (top right).
+              New reviews go to the front. Drag the ≡ handle to change the order, or press × to remove one.
+              Only add real reviews from real customers – copying one from Google or Facebook is perfect.
             fields:
-              - { label: "Customer name", name: name, widget: string, hint: "First name and initial is fine, e.g. Tina B" }
-              - { label: "Town", name: location, widget: string }
-              - { label: "Stars (1-5)", name: rating, widget: number, value_type: int, min: 1, max: 5, default: 5 }
-              - { label: "What they said", name: text, widget: text, hint: "Leave a blank line between paragraphs." }
+              - { label: "Customer name", name: name, widget: string, hint: "First name and surname initial, e.g. Tina B" }
+              - { label: "Town (optional)", name: location, widget: string, required: false, hint: "e.g. Ferndown" }
+              - label: "Stars"
+                name: rating
+                widget: select
+                default: 5
+                options:
+                  - { label: "★★★★★  5 stars", value: 5 }
+                  - { label: "★★★★☆  4 stars", value: 4 }
+                  - { label: "★★★☆☆  3 stars", value: 3 }
+                  - { label: "★★☆☆☆  2 stars", value: 2 }
+                  - { label: "★☆☆☆☆  1 star", value: 1 }
+              - { label: "What they said", name: text, widget: text, hint: "Paste their review here. Long reviews are fine – the website shows the start with a 'Read more' button. Leave a blank line between paragraphs." }
 
           # ───────────────────────────────── 📸 Photos
           - label: "📸 Photos of our work"
