@@ -7,6 +7,30 @@ const path = require("path");
 const SITE_URL = "https://gmgardenlandscapes.netlify.app";
 const CONTENT = path.join(__dirname, "content.json");
 
+// Photos are served through Netlify Image CDN (right size for the screen, WebP/AVIF automatically).
+// Only on Netlify builds – local dev keeps the plain files so `npm start` works offline.
+const USE_CDN = process.env.NETLIFY === "true";
+const CDN_WIDTHS = [480, 800, 1200, 1600];
+const isPhoto = (u) => /^\/assets\/img\/(?!logo-icon|favicon|apple-touch).+\.(jpe?g|png)$/i.test(u);
+const cdn = (u, w) => `/.netlify/images?url=${encodeURIComponent(u)}&amp;w=${w}&amp;q=75`;
+const srcset = (u) => CDN_WIDTHS.map((w) => `${cdn(u, w)} ${w}w`).join(", ");
+function sizesFor(tag) {
+  if (/fetchpriority="high"|class="ivy-drape"/.test(tag)) return "100vw";
+  if (/class="ba-img/.test(tag)) return "(max-width:768px) 100vw, 60vw";
+  return "(max-width:768px) 100vw, 40vw";
+}
+function cdnImages(html) {
+  html = html.replace(/<img\b[^>]*>/g, (tag) => {
+    const m = tag.match(/\ssrc="([^"]+)"/);
+    if (!m || !isPhoto(m[1]) || /\ssrcset=/.test(tag)) return tag;
+    return tag.replace(m[0], ` src="${cdn(m[1], 1600)}" srcset="${srcset(m[1])}" sizes="${sizesFor(tag)}"`);
+  });
+  // Hero preloads must request the same file the <img> will pick
+  return html.replace(/<link rel="preload" as="image" href="([^"]+)"([^>]*)>/g, (tag, u, rest) =>
+    isPhoto(u) ? `<link rel="preload" as="image" href="${cdn(u, 1600)}" imagesrcset="${srcset(u)}" imagesizes="100vw"${rest}>` : tag
+  );
+}
+
 const esc = (v) =>
   String(v == null ? "" : v)
     .replace(/&/g, "&amp;")
@@ -96,6 +120,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("imageList", (list) => (list || []).map((i) => (typeof i === "string" ? i : i.image)));
   eleventyConfig.addFilter("withPhone", withPhone);
   eleventyConfig.addFilter("homeSchema", homeSchema);
+  eleventyConfig.addGlobalData("imgCdn", USE_CDN);
+  if (USE_CDN) eleventyConfig.addTransform("cdnImages", (content, outputPath) =>
+    outputPath && outputPath.endsWith(".html") ? cdnImages(content) : content
+  );
 
   // Files copied as-is
   eleventyConfig.addPassthroughCopy("src/assets");

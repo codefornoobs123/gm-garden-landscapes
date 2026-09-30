@@ -281,6 +281,9 @@ permalink: /index.html
 <script>
 const $=(s,c=document)=>c.querySelector(s);
 const $$=(s,c=document)=>[...c.querySelectorAll(s)];
+// Photo URL at a given width (Netlify Image CDN on the live site, plain file locally)
+const IMG_CDN={{ 'true' if imgCdn else 'false' }};
+const im=(u,w)=>IMG_CDN&&/^\/assets\/img\/.+\.(jpe?g|png)$/i.test(u)?'/.netlify/images?url='+encodeURIComponent(u)+'&w='+w+'&q=75':u;
 // === Before/after reveal cards ===
 const revealPairs=[
 {% for c in gm.beforeAfter.cards %}  {t:{{ c.title | js }},loc:{{ c.location | js }},b:{{ c.before | js }},a:{{ c.after | js }}}{% if not loop.last %},{% endif %}
@@ -290,8 +293,8 @@ revealPairs.forEach((p,i)=>{
   const el=document.createElement('div');el.className='ritem';
   el.innerHTML=`
     <div class="rcard" tabindex="0" role="button" aria-label="${p.t} in ${p.loc} — reveal after photo">
-      <img class="r-after" loading="lazy" src="${p.a}" alt="After: ${p.t} in ${p.loc}">
-      <img class="r-before" loading="lazy" src="${p.b}" alt="Before: ${p.t} in ${p.loc}">
+      <img class="r-after" loading="lazy" src="${im(p.a,800)}" alt="After: ${p.t} in ${p.loc}">
+      <img class="r-before" loading="lazy" src="${im(p.b,800)}" alt="Before: ${p.t} in ${p.loc}">
       <span class="r-tag r-tag-after">After</span>
       <span class="r-tag r-tag-before">Before</span>
       <span class="r-hint">hover / tap</span>
@@ -313,7 +316,7 @@ finished.forEach((p,i)=>{
   const el=document.createElement('div');el.className='fcard';el.dataset.idx=i;
   el.tabIndex=0; el.setAttribute('role','button');
   el.setAttribute('aria-label',`${p.t}${p.loc?' in '+p.loc:''} \u2014 view ${p.imgs.length} photo${p.imgs.length>1?'s':''}`);
-  el.innerHTML=`<img loading="lazy" src="${p.imgs[0]}" alt="${p.t}${p.loc?' in '+p.loc:''}"><span class="fcard-count"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5"/><path d="M3 13l9 5 9-5"/></svg>${p.imgs.length} photos</span><span class="fcard-dots" aria-hidden="true">${p.imgs.map((_,k)=>`<i class="${k===0?'on':''}"></i>`).join('')}</span><div class="fcard-ov">${p.t}${p.loc?' · '+p.loc:''}</div>`;
+  el.innerHTML=`<img loading="lazy" src="${im(p.imgs[0],800)}" alt="${p.t}${p.loc?' in '+p.loc:''}"><span class="fcard-count"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5"/><path d="M3 13l9 5 9-5"/></svg>${p.imgs.length} photos</span><span class="fcard-dots" aria-hidden="true">${p.imgs.map((_,k)=>`<i class="${k===0?'on':''}"></i>`).join('')}</span><div class="fcard-ov">${p.t}${p.loc?' · '+p.loc:''}</div>`;
   finishedGrid.appendChild(el);
 });
 
@@ -323,9 +326,9 @@ if(window.matchMedia('(hover:hover)').matches && !window.matchMedia('(prefers-re
     const p=finished[+card.dataset.idx]; if(p.imgs.length<2) return;
     const img=card.querySelector('img'), dots=[...card.querySelectorAll('.fcard-dots i')];
     let timer=null, k=0, primed=false;
-    const paint=()=>{img.src=p.imgs[k];dots.forEach((d,j)=>d.classList.toggle('on',j===k));};
+    const paint=()=>{img.src=im(p.imgs[k],800);dots.forEach((d,j)=>d.classList.toggle('on',j===k));};
     card.addEventListener('mouseenter',()=>{
-      if(!primed){p.imgs.slice(1).forEach(src=>{const im=new Image();im.src=src;});primed=true;}
+      if(!primed){p.imgs.slice(1).forEach(src=>{const pre=new Image();pre.src=im(src,800);});primed=true;}
       clearInterval(timer);
       timer=setInterval(()=>{k=(k+1)%p.imgs.length;paint();},1100);
     });
@@ -339,7 +342,7 @@ const lbImg=$('#lbImg'),lbPrevImg=$('#lbPrevImg'),lbNextImg=$('#lbNextImg'),lbVi
 let lbP=0,lbI=0,lbBusy=false,lbQueued=0;
 const lbPreloaded=new Set();
 function preloadProject(i){
-  finished[i].imgs.forEach(src=>{ if(!lbPreloaded.has(src)){ lbPreloaded.add(src); const im=new Image(); im.src=src; } });
+  finished[i].imgs.forEach(src=>{ if(!lbPreloaded.has(src)){ lbPreloaded.add(src); const pre=new Image(); pre.src=im(src,1600); } });
 }
 const lbCount=()=>finished[lbP].imgs.length;
 const lbWrap=i=>{const n=lbCount();return (i%n+n)%n;};
@@ -353,11 +356,11 @@ function lbSetTrack(px,animate){
 }
 function lbPaint(){
   const p=finished[lbP], n=lbCount();
-  lbImg.src=p.imgs[lbI];
+  lbImg.src=im(p.imgs[lbI],1600);
   lbImg.alt=`${p.t}${p.loc?' in '+p.loc:''} — photo ${lbI+1}`;
   if(n>1){
-    lbPrevImg.src=p.imgs[lbWrap(lbI-1)];
-    lbNextImg.src=p.imgs[lbWrap(lbI+1)];
+    lbPrevImg.src=im(p.imgs[lbWrap(lbI-1)],1600);
+    lbNextImg.src=im(p.imgs[lbWrap(lbI+1)],1600);
     lbPrevImg.style.visibility=lbNextImg.style.visibility='';
   }else{
     lbPrevImg.removeAttribute('src'); lbNextImg.removeAttribute('src');
