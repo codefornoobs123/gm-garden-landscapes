@@ -10,10 +10,11 @@ const CONTENT = path.join(__dirname, "content.json");
 // Photos are served through Netlify Image CDN (right size for the screen, WebP/AVIF automatically).
 // Only on Netlify builds – local dev keeps the plain files so `npm start` works offline.
 const USE_CDN = process.env.NETLIFY === "true";
-const CDN_WIDTHS = [480, 800, 1200, 1600];
+// Smaller sizes come from the CDN; the largest is the original file, which these leafy photos already compress best as.
+const CDN_WIDTHS = [480, 800, 1200];
 const isPhoto = (u) => /^\/assets\/img\/(?!logo-icon|favicon|apple-touch).+\.(jpe?g|png)$/i.test(u);
-const cdn = (u, w) => `/.netlify/images?url=${encodeURIComponent(u)}&amp;w=${w}&amp;q=75`;
-const srcset = (u) => CDN_WIDTHS.map((w) => `${cdn(u, w)} ${w}w`).join(", ");
+const cdn = (u, w) => `/.netlify/images?url=${encodeURIComponent(u)}&amp;w=${w}&amp;q=60`;
+const srcset = (u) => [...CDN_WIDTHS.map((w) => `${cdn(u, w)} ${w}w`), `${u} 1600w`].join(", ");
 function sizesFor(tag) {
   if (/fetchpriority="high"|class="ivy-drape"/.test(tag)) return "100vw";
   if (/class="ba-img/.test(tag)) return "(max-width:768px) 100vw, 60vw";
@@ -23,11 +24,11 @@ function cdnImages(html) {
   html = html.replace(/<img\b[^>]*>/g, (tag) => {
     const m = tag.match(/\ssrc="([^"]+)"/);
     if (!m || !isPhoto(m[1]) || /\ssrcset=/.test(tag)) return tag;
-    return tag.replace(m[0], ` src="${cdn(m[1], 1600)}" srcset="${srcset(m[1])}" sizes="${sizesFor(tag)}"`);
+    return tag.replace(m[0], ` src="${m[1]}" srcset="${srcset(m[1])}" sizes="${sizesFor(tag)}"`);
   });
   // Hero preloads must request the same file the <img> will pick
   return html.replace(/<link rel="preload" as="image" href="([^"]+)"([^>]*)>/g, (tag, u, rest) =>
-    isPhoto(u) ? `<link rel="preload" as="image" href="${cdn(u, 1600)}" imagesrcset="${srcset(u)}" imagesizes="100vw"${rest}>` : tag
+    isPhoto(u) ? `<link rel="preload" as="image" href="${u}" imagesrcset="${srcset(u)}" imagesizes="100vw"${rest}>` : tag
   );
 }
 

@@ -283,7 +283,7 @@ const $=(s,c=document)=>c.querySelector(s);
 const $$=(s,c=document)=>[...c.querySelectorAll(s)];
 // Photo URL at a given width (Netlify Image CDN on the live site, plain file locally)
 const IMG_CDN={{ 'true' if imgCdn else 'false' }};
-const im=(u,w)=>IMG_CDN&&/^\/assets\/img\/.+\.(jpe?g|png)$/i.test(u)?'/.netlify/images?url='+encodeURIComponent(u)+'&w='+w+'&q=75':u;
+const im=(u,w)=>IMG_CDN&&w<1600&&/^\/assets\/img\/.+\.(jpe?g|png)$/i.test(u)?'/.netlify/images?url='+encodeURIComponent(u)+'&w='+w+'&q=60':u;
 // === Before/after reveal cards ===
 const revealPairs=[
 {% for c in gm.beforeAfter.cards %}  {t:{{ c.title | js }},loc:{{ c.location | js }},b:{{ c.before | js }},a:{{ c.after | js }}}{% if not loop.last %},{% endif %}
