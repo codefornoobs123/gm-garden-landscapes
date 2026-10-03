@@ -1,0 +1,157 @@
+/* GetFullDiary Editor: brand skin for Decap CMS.
+   Decap styles everything with Emotion; its class names carry readable labels
+   (e.g. "css-1abc-AppHeaderContent"), so we target those labels.
+   !important is needed because Emotion injects its styles after this file. */
+
+:root {
+  --gfd-ink: #0a0a0a;
+  --gfd-lime: #8dc63f;      /* on dark backgrounds */
+  --gfd-green: #4f7a1c;     /* on white: 5.1:1 contrast */
+  --gfd-green-dark: #3f6b14;
+  --gfd-tint: #eef5e3;
+  --gfd-paper: #f4f4f1;
+}
+
+/* ───────── Login page ───────── */
+[class*="-StyledAuthenticationPage"] {
+  background: var(--gfd-paper) !important;
+  padding: 40px 16px !important;
+}
+[class*="-CustomIconWrapper"]::after {
+  content: "Log in to update your website";
+  display: block;
+  margin-top: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gfd-ink);
+  text-align: center;
+}
+[class*="-LoginButton"] {
+  background: var(--gfd-green) !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  padding: 0 28px !important;
+  height: 44px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+  font-size: 0 !important;
+}
+[class*="-LoginButton"]::after {
+  content: "Log in";
+  font-size: 15px;
+}
+[class*="-LoginButton"]:hover { background: var(--gfd-green-dark) !important; }
+[class*="-NetlifyCreditIcon"],
+[class*="-StyledAuthenticationPage"] > [class*="-IconWrapper"]:last-child { display: none !important; }
+[class*="-StyledAuthenticationPage"]::after {
+  content: "GetFullDiary Editor  ·  Need help? hello@getfulldiary.co.uk";
+  white-space: pre;
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 24px;
+  line-height: 24px;
+  padding-left: 32px;
+  background: url("gf-logo.png") left center / 24px 24px no-repeat;
+  font-size: 13px;
+  color: #6b6b66;
+}
+
+/* ───────── Top bar ───────── */
+[class*="-AppHeader-css"] {
+  background: var(--gfd-ink) !important;
+  box-shadow: none !important;
+}
+[class*="-AppHeaderContent"] {
+  align-items: center;
+}
+[class*="-AppHeaderContent"]::before {
+  content: "GetFullDiary Editor";
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding-left: 40px;
+  margin-right: 24px;
+  background: url("gf-logo.png") left center / 30px 30px no-repeat;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+/* On phones Decap stacks the header (column-reverse): keep the brand on top */
+@media (max-width: 799.98px) {
+  [class*="-AppHeaderContent"]::before {
+    order: 9;
+    height: 44px;
+    margin: 0 auto;
+  }
+}
+[class*="-AppHeaderButton"],
+[class*="-AppHeaderSiteLink"] {
+  color: #c9c9c4 !important;
+  background: transparent !important;
+}
+[class*="-AppHeaderButton"] [class*="-IconWrapper"] { color: inherit !important; }
+[class*="-AppHeaderButton"] svg,
+[class*="-AppHeaderButton"] svg path { fill: currentColor !important; }
+[class*="-AppHeaderButton"]:hover,
+[class*="-AppHeaderButton"].header-link-active,
+[class*="-AppHeaderSiteLink"]:hover {
+  color: var(--gfd-lime) !important;
+}
+[class*="-AppHeaderButton"].header-link-active {
+  box-shadow: inset 0 -3px 0 var(--gfd-lime) !important;
+}
+
+/* ───────── Sidebar, buttons, accents ───────── */
+[class*="-SidebarNavLink"].sidebar-active,
+[class*="-SidebarNavLink"]:hover {
+  color: var(--gfd-green) !important;
+  background: var(--gfd-tint) !important;
+  border-left-color: var(--gfd-green) !important;
+}
+[class*="-ViewControlsButton"] { color: #8a8a85 !important; }
+[class*="-ViewControlsButton"]:hover { color: var(--gfd-green) !important; }
+
+[class*="-ToggleBackground"] { background-color: #c9c9c4 !important; }
+[class*="-ToggleContainer"] [class*="-ToggleBackground"][class*="Active"],
+[class*="-ToggleBackground"][class*="active"] { background-color: var(--gfd-green) !important; }
+
+[class*="-FileWidgetButton"],
+[class*="-PreviewButtonContainer"],
+[class*="-PreviewLink"] {
+  color: var(--gfd-green) !important;
+}
+[class*="-FileWidgetButton"] { background-color: var(--gfd-tint) !important; }
+[class*="-PreviewLink"] svg, [class*="-PreviewLink"] svg * { fill: currentColor !important; }
+
+/* Focused field: label, hint and border in brand green instead of blue.
+   Only the innermost field being edited (not the whole group around it). */
+[class*="-ControlContainer"]:focus-within:not(:has([class*="-ControlContainer"]:focus-within)) > [class*="-ControlTopbar"] > [class*="-FieldLabel"] {
+  background-color: var(--gfd-green) !important;
+  color: #fff !important;
+}
+[class*="-ControlContainer"]:focus-within:not(:has([class*="-ControlContainer"]:focus-within)) > [class*="-ControlHint"] {
+  color: var(--gfd-green) !important;
+}
+[class*="-ControlContainer"] > :is(input, textarea):focus {
+  border-color: var(--gfd-green) !important;
+}
+
+/* Primary publish button */
+[class*="-PublishButton"],
+[class*="-PublishedToolbarButton"],
+[class*="-ToolbarButton"][class*="buttonBlue"],
+[class*="-ToolbarDropdown"] > span > [class*="-DropdownButton"] {
+  background-color: var(--gfd-green) !important;
+  color: #fff !important;
+}
+
+/* "Published" badge (teal by default) */
+[class*="-PublishedButton"] {
+  background-color: var(--gfd-tint) !important;
+  color: var(--gfd-green) !important;
+}
