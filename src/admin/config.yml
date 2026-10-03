@@ -175,7 +175,8 @@ collections:
                 fields:
                   - { label: "Small line above the headline", name: kicker, widget: string }
                   - { label: "Headline – line 1", name: headlineLine1, widget: string }
-                  - { label: "Headline – line 2 (in green)", name: headlineLine2, widget: string }
+                  - { label: "Headline – line 2", name: headlineLine2, widget: string }
+                  - { label: "Word to highlight", name: headlineAccent, widget: string, required: false, hint: "One word from the headline, copied exactly (e.g. redrawn). It shows in green italics. Leave empty for no highlight." }
                   - { label: "Text under the headline", name: subtext, widget: text }
                   - { label: "Short text for phones", name: subtextShort, widget: string, required: false, hint: "One short line shown on phones instead of the text above, so the photo stays visible. Keep it under 60 characters. Leave empty to show the full text on phones too." }
                   - { label: "Main button", name: primaryButton, widget: string }

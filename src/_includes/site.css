@@ -408,7 +408,7 @@
   .foot-contact i{color:var(--moss-light);font-size:17px;}
   .foot-acc{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
   .foot-acc span{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.04em;border:1px solid rgba(237,235,227,.2);padding:5px 9px;border-radius:100px;margin:0;}
-  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-top:1px solid rgba(237,235,227,.14);font-size:13px;flex-wrap:wrap;gap:12px;}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:22px;padding-bottom:22px;border-top:1px solid rgba(237,235,227,.14);font-size:13px;flex-wrap:wrap;gap:12px;}
   .foot-legal{display:flex;gap:8px;flex-wrap:wrap;}
   .foot-legal a{display:inline-flex;align-items:center;min-height:44px;padding:0 10px;}
   .foot-legal a:hover{color:var(--moss-light);}
@@ -616,7 +616,7 @@
     .foot-social a{width:46px;height:46px;font-size:20px;}
     .foot-col h3{font-size:12px;margin-bottom:12px;}
     .foot-col a,.foot-col span{font-size:14px;margin-bottom:12px;min-height:36px;display:flex;align-items:center;}
-    .foot-bottom{flex-direction:column;align-items:flex-start;gap:8px;padding:18px 0;padding-bottom:100px;}
+    .foot-bottom{flex-direction:column;align-items:flex-start;gap:8px;padding-top:18px;padding-bottom:100px;}
     .foot-legal{gap:16px;}
 
     /* Floating buttons — bigger tap targets */
@@ -768,7 +768,7 @@
   }
 
   /* Build credit — sits under the legal bar, deliberately quiet */
-  .foot-credit{padding:0 0 22px;font-size:12px;line-height:1.5;color:rgba(237,235,227,.45);}
+  .foot-credit{padding-bottom:22px;font-size:12px;line-height:1.5;color:rgba(237,235,227,.45);}
   .foot-credit a{color:rgba(237,235,227,.72);text-decoration:none;border-bottom:1px solid rgba(237,235,227,.25);padding-bottom:1px;}
   @media(hover:hover){ .foot-credit a:hover{color:var(--moss-light);border-bottom-color:var(--moss-light);} }
   .foot-credit a:focus-visible{outline:2px solid var(--moss-light);outline-offset:3px;border-radius:2px;}
@@ -847,7 +847,7 @@
   @media(max-width:767px){
     .home-hero{--hh:75px;height:calc(100svh - var(--hh));min-height:500px;}
     /* Headline sits a quarter of the way down; short line, quote button + trust line sit at the bottom */
-    .home-hero .hero-in{height:100%;align-items:stretch;padding-top:0;padding-bottom:max(26px,env(safe-area-inset-bottom));}
+    .home-hero .hero-in{height:100%;align-items:stretch;padding-top:0;padding-bottom:max(48px,env(safe-area-inset-bottom));}
     .home-hero .hero-content{display:flex;flex-direction:column;height:100%;padding:max(20px,calc((100svh - var(--hh))*.25 - 84px)) 0 0;}
     /* Big, tight display headline that fills the width */
     .home-hero h1{font-size:clamp(40px,12.4vw,60px);line-height:1.02;letter-spacing:-0.015em;text-wrap:balance;}
@@ -855,15 +855,43 @@
     /* Each sentence on its own block, with a gap between them */
     .home-hero h1 br{display:none;}
     .home-hero .hl-line{display:block;text-wrap:wrap;}
-    .home-hero .hl-line ~ .hl-line{margin-top:.34em;}
+    .home-hero .hl-line ~ .hl-line{margin-top:.22em;}
+    /* Two voices: a lighter, drawn first line, then a heavy, built second line */
+    .home-hero .hl-1{font-size:.8em;font-weight:500;letter-spacing:-0.01em;color:rgba(255,255,255,.92);}
+    .home-hero .hl-2{font-weight:700;letter-spacing:-0.025em;line-height:.98;}
+    /* The highlighted word gets a hand-drawn pencil stroke under it, drawn in on load */
+    .home-hero h1 em{position:relative;display:inline-block;}
+    .home-hero h1 em::after{content:"";position:absolute;left:-.04em;right:-.02em;bottom:-.1em;height:.2em;
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9.5C38 5 74 3.6 112 4.4c30 .6 56 2.2 85 5.6' fill='none' stroke='%23B4C2A2' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 0 0/100% 100%;
+      clip-path:inset(0 100% 0 0);animation:hl-draw .9s cubic-bezier(.6,0,.2,1) .5s forwards;}
+    @keyframes hl-draw{to{clip-path:inset(0 0 0 0);}}
+    @media(prefers-reduced-motion:reduce){ .home-hero h1 em::after{animation:none;clip-path:none;} }
     /* Darken behind the two text areas only; the middle of the photo stays clear */
-    .home-hero .hero-overlay{background:linear-gradient(to bottom, rgba(35,36,31,.6) 0%, rgba(35,36,31,.78) 16%, rgba(35,36,31,.78) 52%, rgba(35,36,31,0) 63%, rgba(35,36,31,0) 65%, rgba(35,36,31,.78) 76%, rgba(35,36,31,.86) 100%);}
+    .home-hero .hero-overlay{background:linear-gradient(to bottom, rgba(35,36,31,.6) 0%, rgba(35,36,31,.78) 16%, rgba(35,36,31,.78) 52%, rgba(35,36,31,0) 63%);}
+    /* Bottom group carries its own shade, so it always covers the short line whatever the screen height */
+    .home-hero .hero-bottom{margin-top:auto;position:relative;}
+    .home-hero .hero-bottom::before{content:"";position:absolute;z-index:-1;left:calc(-1 * var(--pad));right:calc(-1 * var(--pad));top:-90px;bottom:-60px;pointer-events:none;
+      background:linear-gradient(to bottom, rgba(35,36,31,0), rgba(35,36,31,.8) 90px, rgba(35,36,31,.86));}
     .home-hero .hero-has-short{display:none;}
-    .home-hero .hero-short{display:block;margin:auto 0 18px;font-size:clamp(15px,4.25vw,16px);}
+    .home-hero .hero-short{display:block;margin:0 0 16px;font-size:clamp(13px,4.15vw,16px);text-wrap:balance;}
     .home-hero .hero-ghost{display:none;}
     .home-hero .hero-ctas{margin-bottom:18px;}
     .home-hero .ht-badges{flex-wrap:nowrap;white-space:nowrap;}
     body:has(.home-hero) :is(.float-call,.float-quote){transition:transform .25s,opacity .25s,visibility .25s;}
-    .float-wait .float-call,.float-wait .float-quote{opacity:0;visibility:hidden;transform:translateY(24px);}
+    /* The round Call button shows straight away; the wide quote bar waits until the hero button has gone */
+    .float-wait .float-quote{opacity:0;visibility:hidden;transform:translateY(24px);}
   }
   @media(max-width:480px){ .home-hero{--hh:63px;} }
+  /* Very narrow phones: stack the two trust badges so the round Call button never covers them */
+  @media(max-width:359px){ .home-hero .ht-badges{flex-wrap:wrap;white-space:normal;padding-right:72px;row-gap:6px;} }
+
+  /* Dark theme: the sage is light, so text and icons on it use dark ink (white on sage was ~2.5:1) */
+  [data-theme="dark"] :is(.btn-primary,.tl-item.in .tl-dot,.quote-points i,.qchip.sel,.qdone-ic,.float-call,.rev-av){color:#23241F;}
+  @media(hover:hover){ [data-theme="dark"] .rev-btn:not(:disabled):hover{color:#23241F;} }
+
+  /* Homepage headline: one highlighted word in sage italics (word chosen in the CMS) */
+  .home-hero h1 em{font-style:italic;font-weight:500;color:#B4C2A2;}
+
+  /* Before/after hint: phones can't hover */
+  .r-hint-touch{display:none;}
+  @media(hover:none){ .r-hint-mouse{display:none;} .r-hint-touch{display:inline;} }

@@ -34,7 +34,7 @@ permalink: /index.html
 <script>document.documentElement.classList.add('float-wait')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.44.0/tabler-icons.min.css">
 
 {{ gm | homeSchema | safe }}
@@ -56,8 +56,9 @@ permalink: /index.html
   </div>
   <div class="wrap hero-in">
     <div class="hero-content">
-      <h1><span class="hero-kicker">{{ gm.pageText.hero.kicker | h }}</span> <span class="hl-line">{{ gm.pageText.hero.headlineLine1 | h }}</span><br><span class="hl-line">{{ gm.pageText.hero.headlineLine2 | h }}</span></h1>
+      <h1><span class="hero-kicker">{{ gm.pageText.hero.kicker | h }}</span> {% set acc = gm.pageText.hero.headlineAccent | h %}<span class="hl-line hl-1">{% if acc %}{{ gm.pageText.hero.headlineLine1 | h | replace(acc, "<em>" + acc + "</em>") }}{% else %}{{ gm.pageText.hero.headlineLine1 | h }}{% endif %}</span><br><span class="hl-line hl-2">{% if acc %}{{ gm.pageText.hero.headlineLine2 | h | replace(acc, "<em>" + acc + "</em>") }}{% else %}{{ gm.pageText.hero.headlineLine2 | h }}{% endif %}</span></h1>
       <p class="hero-sub{% if gm.pageText.hero.subtextShort %} hero-has-short{% endif %}">{{ gm.pageText.hero.subtext | h }}</p>
+      <div class="hero-bottom">
 {% if gm.pageText.hero.subtextShort %}      <p class="hero-sub hero-short">{{ gm.pageText.hero.subtextShort | h }}</p>
 {% endif %}      <div class="hero-ctas">
         <a href="#quote" class="btn btn-primary btn-lg">{{ gm.pageText.hero.primaryButton | h }} <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 18l6-6"/><path d="M13 6l6 6"/></svg></a>
@@ -68,6 +69,7 @@ permalink: /index.html
           <span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2l4-4"/><path d="M12 3a12 12 0 008.5 3A12 12 0 0112 21 12 12 0 013.5 6 12 12 0 0112 3"/></svg> {{ gm.pageText.hero.badge1 | h }}</span>
           <span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M12 15l3.4 5.89 1.6-3.23h3L17 14"/><path d="M6.8 12l-3 .01L5.2 15.23 8.6 20.89 12 15"/></svg> {{ gm.pageText.hero.badge2 | h }}</span>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -299,7 +301,7 @@ revealPairs.forEach((p,i)=>{
       <img class="r-before" loading="lazy" src="${im(p.b,800)}" alt="Before: ${p.t} in ${p.loc}">
       <span class="r-tag r-tag-after">After</span>
       <span class="r-tag r-tag-before">Before</span>
-      <span class="r-hint">hover / tap</span>
+      <span class="r-hint"><span class="r-hint-mouse">hover / tap</span><span class="r-hint-touch">tap to compare</span></span>
     </div>
     <div class="rcard-cap"><strong>${p.t}</strong><span>${p.loc}</span></div>`;
   revealGrid.appendChild(el);
