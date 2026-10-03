@@ -155,3 +155,7 @@
   background-color: var(--gfd-tint) !important;
   color: var(--gfd-green) !important;
 }
+
+/* Page-loading line at the very top is drawn on a <canvas> in Decap blue;
+   shift its hue to brand green. */
+body > canvas { filter: hue-rotate(-135deg) saturate(1.2); }
