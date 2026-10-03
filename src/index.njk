@@ -31,6 +31,7 @@ permalink: /index.html
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
 
 <link rel="preload" as="image" href="{{ gm.pageText.hero.image | h }}" fetchpriority="high">
+<script>document.documentElement.classList.add('float-wait')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
@@ -48,16 +49,17 @@ permalink: /index.html
 
 <main id="main">
 
-<section class="hero" id="hero">
+<section class="hero home-hero" id="hero">
   <div class="hero-bg" aria-hidden="true">
     <img src="{{ gm.pageText.hero.image | h }}" fetchpriority="high" alt="{{ gm.pageText.hero.imageAlt | h }}" loading="eager" width="1920" height="1080">
     <div class="hero-overlay"></div>
   </div>
   <div class="wrap hero-in">
     <div class="hero-content">
-      <h1><span class="hero-kicker">{{ gm.pageText.hero.kicker | h }}</span> {{ gm.pageText.hero.headlineLine1 | h }}<br>{{ gm.pageText.hero.headlineLine2 | h }}</h1>
-      <p class="hero-sub">{{ gm.pageText.hero.subtext | h }}</p>
-      <div class="hero-ctas">
+      <h1><span class="hero-kicker">{{ gm.pageText.hero.kicker | h }}</span> <span class="hl-line">{{ gm.pageText.hero.headlineLine1 | h }}</span><br><span class="hl-line">{{ gm.pageText.hero.headlineLine2 | h }}</span></h1>
+      <p class="hero-sub{% if gm.pageText.hero.subtextShort %} hero-has-short{% endif %}">{{ gm.pageText.hero.subtext | h }}</p>
+{% if gm.pageText.hero.subtextShort %}      <p class="hero-sub hero-short">{{ gm.pageText.hero.subtextShort | h }}</p>
+{% endif %}      <div class="hero-ctas">
         <a href="#quote" class="btn btn-primary btn-lg">{{ gm.pageText.hero.primaryButton | h }} <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 18l6-6"/><path d="M13 6l6 6"/></svg></a>
         <a href="#work" class="btn btn-ghost btn-lg hero-ghost">{{ gm.pageText.hero.secondaryButton | h }}</a>
       </div>
@@ -644,6 +646,17 @@ $$('.btn-primary,.btn-dark').forEach(b=>b.addEventListener('click',function(e){
   if(!els.length)return;
   var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('drawn');o.unobserve(e.target);}});},{threshold:0.6});
   els.forEach(function(el){o.observe(el);});
+})();
+
+// === Phones: floating call/quote bar appears once the hero's quote button has scrolled away ===
+(function(){
+  var cta=document.querySelector('.home-hero .hero-ctas .btn-primary');
+  var root=document.documentElement;
+  if(!cta||!('IntersectionObserver' in window)){ root.classList.remove('float-wait'); return; }
+  new IntersectionObserver(function(es){
+    var e=es[0];
+    root.classList.toggle('float-wait', e.isIntersecting||e.boundingClientRect.top>0);
+  }).observe(cta);
 })();
 
 // === Hero: fade the headline as you leave it ===

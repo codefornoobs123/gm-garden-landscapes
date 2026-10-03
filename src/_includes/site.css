@@ -841,3 +841,29 @@
     .rev-nav{display:none;}
     .rev-track{gap:14px;}
   }
+
+  /* ── Homepage hero on phones (under 768px): photo first – one short line, one button ── */
+  .hero-short{display:none;}
+  @media(max-width:767px){
+    .home-hero{--hh:75px;height:calc(100svh - var(--hh));min-height:500px;}
+    /* Headline sits a quarter of the way down; short line, quote button + trust line sit at the bottom */
+    .home-hero .hero-in{height:100%;align-items:stretch;padding-top:0;padding-bottom:max(26px,env(safe-area-inset-bottom));}
+    .home-hero .hero-content{display:flex;flex-direction:column;height:100%;padding:max(20px,calc((100svh - var(--hh))*.25 - 84px)) 0 0;}
+    /* Big, tight display headline that fills the width */
+    .home-hero h1{font-size:clamp(40px,12.4vw,60px);line-height:1.02;letter-spacing:-0.015em;text-wrap:balance;}
+    .home-hero .hero-kicker{margin-bottom:16px;}
+    /* Each sentence on its own block, with a gap between them */
+    .home-hero h1 br{display:none;}
+    .home-hero .hl-line{display:block;text-wrap:wrap;}
+    .home-hero .hl-line ~ .hl-line{margin-top:.34em;}
+    /* Darken behind the two text areas only; the middle of the photo stays clear */
+    .home-hero .hero-overlay{background:linear-gradient(to bottom, rgba(35,36,31,.6) 0%, rgba(35,36,31,.78) 16%, rgba(35,36,31,.78) 52%, rgba(35,36,31,0) 63%, rgba(35,36,31,0) 65%, rgba(35,36,31,.78) 76%, rgba(35,36,31,.86) 100%);}
+    .home-hero .hero-has-short{display:none;}
+    .home-hero .hero-short{display:block;margin:auto 0 18px;font-size:clamp(15px,4.25vw,16px);}
+    .home-hero .hero-ghost{display:none;}
+    .home-hero .hero-ctas{margin-bottom:18px;}
+    .home-hero .ht-badges{flex-wrap:nowrap;white-space:nowrap;}
+    body:has(.home-hero) :is(.float-call,.float-quote){transition:transform .25s,opacity .25s,visibility .25s;}
+    .float-wait .float-call,.float-wait .float-quote{opacity:0;visibility:hidden;transform:translateY(24px);}
+  }
+  @media(max-width:480px){ .home-hero{--hh:63px;} }
