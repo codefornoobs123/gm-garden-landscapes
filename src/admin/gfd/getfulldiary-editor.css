@@ -159,3 +159,104 @@
 /* Page-loading line at the very top is drawn on a <canvas> in Decap blue;
    shift its hue to brand green. */
 body > canvas { filter: hue-rotate(-135deg) saturate(1.2); }
+
+/* ═════════ v2: fonts, welcome banner, warmer look, login card ═════════ */
+
+/* Same fonts as getfulldiary.co.uk, self-hosted (SIL Open Font License, see fonts/) */
+@font-face {
+  font-family: "GFD Inter";
+  src: url("fonts/Inter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GFD Space Grotesk";
+  src: url("fonts/SpaceGrotesk.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+body,
+body *:not(svg):not(svg *):not(code):not(pre):not([class*="CodeMirror"]):not([class*="CodeMirror"] *) {
+  font-family: "GFD Inter", ui-sans-serif, system-ui, sans-serif !important;
+}
+[class*="-SidebarHeading"],
+[class*="-CollectionTopHeading"],
+[class*="-AppHeaderContent"]::before,
+[class*="-CustomIconWrapper"]::after {
+  font-family: "GFD Space Grotesk", ui-sans-serif, system-ui, sans-serif !important;
+  letter-spacing: -0.01em;
+}
+
+/* Warmer, softer look */
+body,
+[class*="-AppMainContainer"] {
+  background: var(--gfd-paper) !important;
+}
+[class*="-card-card"] {
+  border-radius: 14px !important;
+  border: 1px solid #e6e6df !important;
+  box-shadow: 0 1px 2px rgba(20, 20, 10, 0.04), 0 6px 18px rgba(20, 20, 10, 0.04) !important;
+}
+[class*="-ListCard-card"] { overflow: hidden; }
+[class*="-ListCard-card"]:hover {
+  border-color: var(--gfd-green) !important;
+}
+[class*="-SearchInput"] { border-radius: 10px !important; }
+
+/* Welcome banner above the collection. The text is set per site in
+   admin/index.html as --gfd-welcome (falls back to this default). */
+[class*="-CollectionMain"]::before {
+  content: var(--gfd-welcome, "👋 Welcome! Tap a page below to start editing, then press Publish (top right) when you're done. Stuck? Email hello@getfulldiary.co.uk");
+  display: block;
+  margin-bottom: 20px;
+  padding: 16px 20px 16px 20px;
+  border-radius: 14px;
+  background: var(--gfd-ink);
+  color: #f1f1ec;
+  font-size: 15px;
+  line-height: 1.5;
+  border-left: 6px solid var(--gfd-lime);
+}
+
+/* Login: client logo, heading and button sit on a white card */
+[class*="-StyledAuthenticationPage"] { position: relative; }
+[class*="-StyledAuthenticationPage"]::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(400px, calc(100% - 32px));
+  height: 470px;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: 1px solid #e6e6df;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(20, 20, 10, 0.08);
+}
+[class*="-StyledAuthenticationPage"] > * { position: relative; z-index: 1; }
+[class*="-CustomIconWrapper"] {
+  width: 180px !important;
+  height: auto !important;
+}
+[class*="-CustomIconWrapper"] img { width: 100% !important; height: auto !important; }
+[class*="-StyledAuthenticationPage"]::after {
+  content: "Your website is looked after by GetFullDiary  ·  Need help? hello@getfulldiary.co.uk";
+}
+@media (max-width: 520px) {
+  [class*="-StyledAuthenticationPage"]::after {
+    content: "Looked after by GetFullDiary\A hello@getfulldiary.co.uk";
+    height: auto;
+    line-height: 1.5;
+    text-align: left;
+  }
+}
+[class*="-CustomIconWrapper"]::after {
+  width: 320px;
+  margin-left: -70px;
+  font-size: 20px;
+}
+/* Same width as the collection card under it */
+[class*="-CollectionMain"]::before {
+  box-sizing: border-box;
+  max-width: 682px;
+}
