@@ -842,6 +842,14 @@
     .rev-track{gap:14px;}
   }
 
+  /* Hero highlighted word: hand-drawn pencil stroke drawn in on load (phones AND desktop since 18 Oct 2026) */
+  .home-hero h1 em{position:relative;display:inline-block;}
+  .home-hero h1 em::after{content:"";position:absolute;left:-.04em;right:-.02em;bottom:-.1em;height:.2em;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9.5C38 5 74 3.6 112 4.4c30 .6 56 2.2 85 5.6' fill='none' stroke='%23B4C2A2' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 0 0/100% 100%;
+    clip-path:inset(0 100% 0 0);animation:hl-draw .9s cubic-bezier(.6,0,.2,1) .5s forwards;}
+  @keyframes hl-draw{to{clip-path:inset(0 0 0 0);}}
+  @media(prefers-reduced-motion:reduce){ .home-hero h1 em::after{animation:none;clip-path:none;} }
+
   /* ── Homepage hero on phones (under 768px): photo first – one short line, one button ── */
   .hero-short{display:none;}
   @media(max-width:767px){
@@ -859,13 +867,6 @@
     /* Two voices: a lighter, drawn first line, then a heavy, built second line */
     .home-hero .hl-1{font-size:.8em;font-weight:500;letter-spacing:-0.01em;color:rgba(255,255,255,.92);}
     .home-hero .hl-2{font-weight:700;letter-spacing:-0.025em;line-height:.98;}
-    /* The highlighted word gets a hand-drawn pencil stroke under it, drawn in on load */
-    .home-hero h1 em{position:relative;display:inline-block;}
-    .home-hero h1 em::after{content:"";position:absolute;left:-.04em;right:-.02em;bottom:-.1em;height:.2em;
-      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9.5C38 5 74 3.6 112 4.4c30 .6 56 2.2 85 5.6' fill='none' stroke='%23B4C2A2' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 0 0/100% 100%;
-      clip-path:inset(0 100% 0 0);animation:hl-draw .9s cubic-bezier(.6,0,.2,1) .5s forwards;}
-    @keyframes hl-draw{to{clip-path:inset(0 0 0 0);}}
-    @media(prefers-reduced-motion:reduce){ .home-hero h1 em::after{animation:none;clip-path:none;} }
     /* Darken behind the two text areas only; the middle of the photo stays clear */
     .home-hero .hero-overlay{background:linear-gradient(to bottom, rgba(35,36,31,.6) 0%, rgba(35,36,31,.78) 16%, rgba(35,36,31,.78) 52%, rgba(35,36,31,0) 63%);}
     /* Bottom group carries its own shade, so it always covers the short line whatever the screen height */
