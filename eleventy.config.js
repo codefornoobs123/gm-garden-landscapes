@@ -134,6 +134,8 @@ module.exports = function (eleventyConfig) {
   // Files copied as-is
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
+  // This also copies src/googlecaa905744cb71011.html, Google Search Console's ownership file (28 Oct 2026).
+  // It must stay on the live site. .html isn't a template format here, so it is copied, never built as a page.
   eleventyConfig.addPassthroughCopy("src/*.html"); // privacy, terms, cookies, 404
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   eleventyConfig.addPassthroughCopy("src/sitemap.xml");
