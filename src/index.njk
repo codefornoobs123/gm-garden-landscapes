@@ -226,7 +226,6 @@ permalink: /index.html
       <form id="quoteForm" name="quote" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
         <input type="hidden" name="form-name" value="quote">
         <input type="hidden" name="Project types" value="">
-        <input type="hidden" name="Photos attached" value="">
         <p style="position:absolute;left:-9999px;" aria-hidden="true"><label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="qpanel active" data-step="1">
           <div class="qfield"><label for="qName">Name</label><input type="text" id="qName" name="Name" placeholder="Your full name" autocomplete="name"></div>
@@ -247,8 +246,8 @@ permalink: /index.html
           <div class="qradios" id="qStart" role="group" aria-labelledby="qStartLabel"></div>
           <div class="qfield" style="margin-top:18px;"><label for="qArea">Approximate area / size</label><input type="text" id="qArea" name="Area" placeholder="e.g. roughly 20m², or 4m x 5m"></div>
           <div class="qfield"><label for="qMaterials">Materials or style preference</label><input type="text" id="qMaterials" name="Materials preference" placeholder="e.g. porcelain paving, resin driveway, or slabs you have in mind"></div>
-          <p class="qlabel" style="margin-top:18px;">Add photos <span>(optional, helps us quote accurately)</span></p>
-          <label class="qupload"><input type="file" multiple accept="image/*" id="qPhotos"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 8h.01M12.5 21H6a3 3 0 01-3-3V6a3 3 0 013-3h12a3 3 0 013 3v6.5M3 16l5-5c.928-.893 2.072-.893 3 0l3 3M14 14l1-1c.617-.593 1.328-.793 2.009-.598M19 16v6m3-3l-3-3l-3 3"/></svg><span id="qPhotoLabel">Tap to add garden photos</span></label>
+          <p class="qlabel" style="margin-top:18px;">Photos <span>(optional)</span></p>
+          <p class="qnote">{{ gm.pageText.quote.done.photosNote | replace('{owner}', gm.pageText.quote.done.owner) | h }}</p>
           <div class="qfield"><label for="qNotes">Anything else?</label><textarea id="qNotes" name="Notes" placeholder="Tell us a bit about the space, size, ideas..."></textarea></div>
           <p class="qsummary" id="qSummary"></p>
           <p class="qerror" id="qError" style="display:none;color:var(--err);font-size:14px;margin-top:10px;">Something went wrong sending your enquiry. Please call us instead, or try again.</p>
@@ -262,9 +261,18 @@ permalink: /index.html
       </form>
 
       <div class="qdone" id="qDone">
-        <div class="qdone-ic"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
-        <h3>Thanks, that's with us.</h3>
-        <p>We'll be in touch to book your free site visit, and your written quote will follow within a week. For anything urgent, call <a href="tel:{{ gm.contact.phoneLink | h }}">{{ gm.contact.phone | h }}</a>.</p>
+{%- set dn = gm.pageText.quote.done %}
+        <div class="qdone-head">
+          <div class="qdone-ic"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+          <h3 id="qDoneTitle" data-title="{{ dn.title | replace('{owner}', dn.owner) | h }}">{{ dn.title | replace('{name}', '') | replace('{owner}', dn.owner) | h }}</h3>
+        </div>
+        <p class="qdone-next">{{ dn.text | replace('{owner}', dn.owner) | replace('{replyTime}', dn.replyTime) | h }}</p>
+        <p class="qdone-asked" id="qDoneAsked" hidden></p>
+{%- if dn.proof %}
+        <p class="qdone-proof">{{ dn.proof | h }}</p>
+{%- endif %}
+        <a class="btn btn-primary qdone-photos" href="sms:{{ gm.contact.phoneLink | h }}?&amp;body={{ dn.photosMessage | replace('{owner}', dn.owner) | urlencode }}"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 8h.01M12.5 21H6a3 3 0 01-3-3V6a3 3 0 013-3h12a3 3 0 013 3v6.5M3 16l5-5c.928-.893 2.072-.893 3 0l3 3"/><path d="M19 16v6m3-3l-3-3l-3 3"/></svg>{{ dn.photosButton | replace('{owner}', dn.owner) | h }}</a>
+        <p class="qdone-save"><a href="/contact.vcf" download="{{ gm.advanced.company.name | h }}.vcf"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7a4 4 0 108 0a4 4 0 00-8 0"/><path d="M6 21v-2a4 4 0 014-4h4"/><path d="M16 19h6m-3-3v6"/></svg>{{ dn.saveButton | replace('{owner}', dn.owner) | h }}</a><span>{{ dn.callFrom | replace('{owner}', dn.owner) | replace('{phone}', gm.contact.phone) | h }}</span></p>
       </div>
     </div>
   </div>
@@ -498,7 +506,6 @@ starts.forEach((b,i)=>{
     l.classList.add('sel'); state.start=b;});
   qs.appendChild(l);
 });
-$('#qPhotos').addEventListener('change',e=>{state.photos=e.target.files.length;$('#qPhotoLabel').textContent=state.photos?`${state.photos} photo${state.photos>1?'s':''} added`:'Tap to add garden photos';});
 
 let step=1;const maxStep=3;
 const titles={1:'Your details',2:'What you need',3:'The job'};
@@ -513,7 +520,6 @@ function showStep(){
     const parts=[];
     if(state.types.size)parts.push([...state.types].join(', '));
     if(state.start)parts.push(state.start);
-    if(state.photos)parts.push(state.photos+' photo(s)');
     $('#qSummary').textContent=parts.length?'Your enquiry: '+parts.join(' · '):'Add a few details above and we will do the rest.';
   }
 }
@@ -563,11 +569,18 @@ $('#quoteForm').addEventListener('submit',async e=>{
   const data=new FormData($('#quoteForm'));
   data.set('Project types',[...state.types].join(', ')||'Not specified');
   data.set('Preferred start',state.start||'Not specified');
-  data.set('Photos attached',state.photos?String(state.photos):'0');
   try{
     const res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()});
     if(!res.ok)throw new Error('Request failed');
     $('#quoteForm').style.display='none';$('#qDone').classList.add('show');$('.qsteps').style.display='none';
+    document.documentElement.classList.add('quote-sent');
+    const first=($('#qName').value||'').trim().split(/\s+/)[0];
+    const t=$('#qDoneTitle');t.textContent=t.dataset.title.replace('{name}',first?', '+first:'');
+    // a short read-back of what they asked for, so they know it went through properly
+    const pc=($('#qPostcode').value||'').trim().toUpperCase();
+    const what=state.types.size?[...state.types].join(', ').toLowerCase():'';
+    if(what||pc){const a=$('#qDoneAsked');a.textContent='You asked about '+(what||'a job')+(pc?' in '+pc:'')+(state.start?', '+state.start.toLowerCase():'')+'.';a.hidden=false;}
+    $('#qDone').closest('.quote-card').scrollIntoView({block:'start'});
   }catch(err){
     $('#qError').style.display='block';
     submitBtn.disabled=false;submitBtn.innerHTML=submitBtnHTML;

@@ -15,3 +15,10 @@
   from = "/og-image.jpg"
   to = "/assets/img/og-image.jpg"
   status = 301
+
+# The thank-you's "Save Gary's number" contact card opens as a contact on phones
+[[headers]]
+  for = "/contact.vcf"
+  [headers.values]
+    Content-Type = "text/vcard; charset=utf-8"
+    Content-Disposition = "attachment; filename=\"GM Garden Landscapes.vcf\""

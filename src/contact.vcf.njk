@@ -1,0 +1,14 @@
+---
+permalink: /contact.vcf
+eleventyExcludeFromCollections: true
+---
+{#- The "Save Gary's number" button on the thank-you: a contact card for the customer's phone, from content.json -#}
+BEGIN:VCARD
+VERSION:3.0
+N:;{{ gm.pageText.quote.done.owner }};;;
+FN:{{ gm.pageText.quote.done.owner }} ({{ gm.advanced.company.name }})
+ORG:{{ gm.advanced.company.name }}
+TEL;TYPE=CELL:{{ gm.contact.phoneLink }}
+EMAIL:{{ gm.contact.email }}
+URL:https://gmgardenlandscapes.netlify.app
+END:VCARD

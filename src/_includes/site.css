@@ -371,12 +371,24 @@
   .qrow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   .qsummary{font-size:15.5px;font-weight:600;color:var(--txt);background:var(--cream-2);border-left:3px solid var(--moss);padding:14px 16px;border-radius:var(--r-sm);line-height:1.5;}
   .qnav{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
-  .qdone{display:none;text-align:center;padding:30px 10px;}
+  /* thank-you after the quote form: compact, so it all fits on one phone screen (Josh, 30 Oct) */
+  .quote-card{scroll-margin-top:76px;}
+  .qdone{display:none;}
   .qdone.show{display:block;animation:qfade .5s;}
-  .qdone-ic{width:64px;height:64px;border-radius:50%;background:var(--moss);color:#fff;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 18px;}
-  .qdone h3{font-size:26px;margin-bottom:10px;}
-  .qdone p{color:var(--txt-mut);font-size:15px;}
-  .qdone a{color:var(--moss);font-weight:600;}
+  .qdone-head{display:flex;align-items:center;gap:12px;}
+  .qdone-ic{flex:none;width:40px;height:40px;border-radius:50%;background:var(--moss);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;}
+  .qdone h3{margin:0;font-size:clamp(21px,5.6vw,26px);line-height:1.15;text-wrap:balance;}
+  .qdone p{color:var(--txt-mut);font-size:15px;line-height:1.45;text-wrap:pretty;}
+  .qdone p a{color:var(--moss);font-weight:600;}
+  .qnote{margin:0 0 18px;font-size:14.5px;color:var(--txt-mut);line-height:1.5;}
+  .qdone .qdone-next{margin:12px 0 0;color:var(--txt);}
+  .qdone .qdone-asked{margin:10px 0 0;padding:8px 12px;background:var(--cream-2);border-left:3px solid var(--moss);border-radius:var(--r-sm);color:var(--txt);font-size:14px;}
+  .qdone .qdone-proof{margin:10px 0 0;font-size:14px;font-style:italic;}
+  .qdone-photos{margin-top:14px;width:100%;justify-content:center;padding:13px 16px;white-space:nowrap;}
+  .qdone .qdone-save{margin:10px 0 0;text-align:center;font-size:13.5px;}
+  .qdone-save a{display:inline-flex;align-items:center;gap:6px;}
+  .qdone-save span{display:block;}
+  .quote-sent .float-quote,.quote-sent .float-call{display:none!important;}
 
 
   .map-sec{background:var(--cream);}

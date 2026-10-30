@@ -269,6 +269,22 @@ collections:
                     label_singular: "point"
                     summary: "{{fields.point}}"
                     field: { label: "Point", name: point, widget: string }
+                  - label: "After someone sends the form (thank-you)"
+                    name: done
+                    widget: object
+                    collapsed: true
+                    hint: "What people see straight after they send an enquiry. Type {owner} for your first name, {name} for theirs, {replyTime} for how quickly you reply and {phone} for your number."
+                    fields:
+                      - { label: "Your first name", name: owner, widget: string, hint: "Used in the thank-you, e.g. Gary." }
+                      - { label: "Heading", name: title, widget: string }
+                      - { label: "What happens next", name: text, widget: string, hint: "One or two short sentences. The thank-you has to fit on one phone screen." }
+                      - { label: "How quickly you reply", name: replyTime, widget: string, hint: "Only promise what you can always keep, e.g. within one working day." }
+                      - { label: "A real review (short)", name: proof, widget: string, required: false, hint: "A short line from a real customer review on your site. Leave empty to hide it." }
+                      - { label: "Photos button", name: photosButton, widget: string }
+                      - { label: "Photos text message", name: photosMessage, widget: string, hint: "The words already typed in the text when someone taps the photos button." }
+                      - { label: "Photos note in the form", name: photosNote, widget: string }
+                      - { label: "Save my number button", name: saveButton, widget: string }
+                      - { label: "Line under it", name: callFrom, widget: string }
               - label: "Footer"
                 name: footer
                 widget: object
