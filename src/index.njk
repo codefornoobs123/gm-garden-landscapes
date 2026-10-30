@@ -92,7 +92,12 @@ permalink: /index.html
       </div>
       <div class="vf-video">
         <div class="reel">
-          <iframe src="https://www.facebook.com/plugins/video.php?height=625&href={{ gm.pageText.video.facebookVideoUrl | urlencode }}&show_text=false&width=350&t=0" width="350" height="625" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy" title="{{ gm.advanced.company.name | h }} &mdash; finished project video"></iframe>
+{% if gm.pageText.video.file %}
+          <video class="reel-video" src="{{ gm.pageText.video.file | h }}"{% if gm.pageText.video.poster %} poster="{{ gm.pageText.video.poster | h }}"{% endif %} preload="none" playsinline width="350" height="622" aria-label="{{ gm.pageText.video.heading | h }}"></video>
+          <button type="button" class="reel-play" aria-label="Play the video (sound on)"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg><span>Play with sound</span></button>
+{% else %}
+          <iframe src="https://www.facebook.com/plugins/video.php?height=625&href={{ gm.pageText.video.facebookVideoUrl | urlencode }}&show_text=false&width=350&t=0" width="350" height="625" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy" title="{{ gm.advanced.company.name | h }}: finished project video"></iframe>
+{% endif %}
         </div>
       </div>
     </div>
@@ -246,7 +251,7 @@ permalink: /index.html
           <label class="qupload"><input type="file" multiple accept="image/*" id="qPhotos"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 8h.01M12.5 21H6a3 3 0 01-3-3V6a3 3 0 013-3h12a3 3 0 013 3v6.5M3 16l5-5c.928-.893 2.072-.893 3 0l3 3M14 14l1-1c.617-.593 1.328-.793 2.009-.598M19 16v6m3-3l-3-3l-3 3"/></svg><span id="qPhotoLabel">Tap to add garden photos</span></label>
           <div class="qfield"><label for="qNotes">Anything else?</label><textarea id="qNotes" name="Notes" placeholder="Tell us a bit about the space, size, ideas..."></textarea></div>
           <p class="qsummary" id="qSummary"></p>
-          <p class="qerror" id="qError" style="display:none;color:var(--err);font-size:14px;margin-top:10px;">Something went wrong sending your enquiry — please call us instead, or try again.</p>
+          <p class="qerror" id="qError" style="display:none;color:var(--err);font-size:14px;margin-top:10px;">Something went wrong sending your enquiry. Please call us instead, or try again.</p>
         </div>
 
         <div class="qnav">
@@ -258,7 +263,7 @@ permalink: /index.html
 
       <div class="qdone" id="qDone">
         <div class="qdone-ic"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
-        <h3>Thanks — that's with us.</h3>
+        <h3>Thanks, that's with us.</h3>
         <p>We'll be in touch to book your free site visit, and your written quote will follow within a week. For anything urgent, call <a href="tel:{{ gm.contact.phoneLink | h }}">{{ gm.contact.phone | h }}</a>.</p>
       </div>
     </div>
@@ -296,7 +301,7 @@ const revealGrid=$('#revealGrid');
 revealPairs.forEach((p,i)=>{
   const el=document.createElement('div');el.className='ritem';
   el.innerHTML=`
-    <div class="rcard" tabindex="0" role="button" aria-label="${p.t} in ${p.loc} — reveal after photo">
+    <div class="rcard" tabindex="0" role="button" aria-label="${p.t} in ${p.loc}, reveal after photo">
       <img class="r-after" loading="lazy" src="${im(p.a,800)}" alt="After: ${p.t} in ${p.loc}">
       <img class="r-before" loading="lazy" src="${im(p.b,800)}" alt="Before: ${p.t} in ${p.loc}">
       <span class="r-tag r-tag-after">After</span>
@@ -361,7 +366,7 @@ function lbSetTrack(px,animate){
 function lbPaint(){
   const p=finished[lbP], n=lbCount();
   lbImg.src=im(p.imgs[lbI],1600);
-  lbImg.alt=`${p.t}${p.loc?' in '+p.loc:''} — photo ${lbI+1}`;
+  lbImg.alt=`${p.t}${p.loc?' in '+p.loc:''}, photo ${lbI+1}`;
   if(n>1){
     lbPrevImg.src=im(p.imgs[lbWrap(lbI-1)],1600);
     lbNextImg.src=im(p.imgs[lbWrap(lbI+1)],1600);
@@ -417,7 +422,7 @@ lb.addEventListener('click',e=>{if(e.target===lb)$('#lbClose').click();});
 window.addEventListener('resize',()=>{if(lb.classList.contains('open')&&!lbBusy)lbSetTrack(0,false);});
 document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')$('#lbClose').click();if(e.key==='ArrowRight')lbGo(1);if(e.key==='ArrowLeft')lbGo(-1);});
 
-// Drag the track with your finger — the neighbouring photo comes in as you go
+// Drag the track with your finger, the neighbouring photo comes in as you go
 (function(){
   const view=lbView; if(!view) return;
   let x0=0,y0=0,dx=0,dragging=false,decided=false,horizontal=false;
@@ -470,7 +475,7 @@ faqs.forEach(([q,a])=>{
 });
 
 const ptypes=[['Patio / paving','ti-stairs'],['Driveway','ti-car'],['Garden design','ti-ruler-measure'],['Decking','ti-deer'],['Fencing','ti-fence'],['Artificial grass','ti-plant-2'],['Planting / turfing','ti-seeding'],['Hedge work','ti-cut'],['Garden maintenance','ti-plant'],['Electrical cables','ti-plug'],['Drainage / soakaways','ti-droplet'],['Gates','ti-door'],['Sleeper borders','ti-wall'],['Shed / summer house base','ti-home'],['Not sure yet','ti-help']];
-const starts=['As soon as possible','3–6 months','Just exploring ideas'];
+const starts=['As soon as possible','3 to 6 months','Just exploring ideas'];
 const state={types:new Set(),start:'',photos:0};
 
 const qpt=$('#qProjectTypes');
@@ -769,6 +774,15 @@ $$('.btn-primary,.btn-dark').forEach(b=>b.addEventListener('click',function(e){
 })();
 </script>
 <script>var _y=document.getElementById("yr");if(_y)_y.textContent=new Date().getFullYear();</script>
+<script>
+// Finished-project video: nothing downloads until the play button is pressed, then it plays with sound and shows the normal controls
+(function(){
+  var reel=document.querySelector('.reel');
+  var v=reel&&reel.querySelector('.reel-video'),b=reel&&reel.querySelector('.reel-play');
+  if(!v||!b)return;
+  b.addEventListener('click',function(){reel.classList.add('is-playing');v.controls=true;v.muted=false;var p=v.play();if(p&&p.catch)p.catch(function(){});});
+})();
+</script>
 <script>
 (function(){
   var selectors=['#work','#about','#quote'];

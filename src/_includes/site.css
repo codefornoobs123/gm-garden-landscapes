@@ -450,6 +450,12 @@
   .vf-copy p{margin:0 0 24px;}
   .reel{width:350px;max-width:100%;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);background:#000;line-height:0;border:1px solid var(--line);}
   .reel iframe{display:block;width:350px;height:625px;border:0;}
+  .reel{position:relative;}
+  .reel-video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;background:#000;}
+  .reel-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:10px;padding:14px 22px 14px 16px;border-radius:100px;border:1px solid rgba(255,255,255,.28);background:rgba(16,18,14,.78);color:#fff;font-family:var(--sans);font-weight:600;font-size:15px;line-height:1.2;white-space:nowrap;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .2s,background .2s;}
+  .reel-play:active{transform:translate(-50%,-50%) scale(.97);}
+  .reel-play:focus-visible{outline:3px solid #fff;outline-offset:3px;}
+  .reel.is-playing .reel-play{display:none;}
 
 
 

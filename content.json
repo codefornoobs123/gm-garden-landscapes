@@ -14,7 +14,7 @@
     ],
     "location": "Ferndown, Dorset",
     "closes": "16:00",
-    "hoursText": "Mon–Fri 8am–4pm",
+    "hoursText": "Mon to Fri, 8am to 4pm",
     "email": "gazzo.13@sky.com"
   },
   "photos": [
@@ -213,7 +213,7 @@
       "eyebrow": "Our story",
       "heading": "A local team that treats your garden",
       "headingHighlight": "like our own.",
-      "paragraphs": "GM Garden Landscapes started in 2009 with one van, a digger and a simple idea: do proper landscaping, properly. No disappearing halfway through a job, no mess left behind.\n\nToday we're a tight team of qualified landscapers based in Ferndown, covering Bournemouth, Poole and the surrounding towns — but the standard hasn't changed. Every project gets a real design, a fixed timeline and a 12-month workmanship guarantee.",
+      "paragraphs": "GM Garden Landscapes started in 2009 with one van, a digger and a simple idea: do proper landscaping, properly. No disappearing halfway through a job, no mess left behind.\n\nToday we're a tight team of qualified landscapers based in Ferndown, covering Bournemouth, Poole and the surrounding towns, but the standard hasn't changed. Every project gets a real design, a fixed timeline and a 12-month workmanship guarantee.",
       "values": [
         {
           "title": "Built by us",
@@ -240,14 +240,14 @@
     "faq": {
       "eyebrow": "FAQ",
       "heading": "Questions homeowners ask us most.",
-      "intro": "Can't see your question? Call us on {phone} — happy to help, no hard sell."
+      "intro": "Can't see your question? Call us on {phone}. Happy to help, no hard sell."
     },
     "hero": {
       "secondaryButton": "See recent work",
       "headlineLine1": "Gardens redrawn.",
       "headlineLine2": "Ground rebuilt to last.",
       "headlineAccent": "redrawn",
-      "subtext": "Expert patios, driveways and garden transformations across Bournemouth, Poole and East Dorset — designed properly, built by our own team, and guaranteed for 12 months.",
+      "subtext": "Expert patios, driveways and garden transformations across Bournemouth, Poole and East Dorset, designed properly, built by our own team, and guaranteed for 12 months.",
       "subtextShort": "Patios, driveways & gardens in East Dorset.",
       "badge1": "Fully insured",
       "imageAlt": "Sandstone patio with white pebble borders, tree ferns and grey composite fencing",
@@ -264,7 +264,9 @@
       "show": true,
       "eyebrow": "On film",
       "heading": "See a finished project",
-      "text": "A short walkthrough of one of our completed projects at Ocean Village Marina, Southampton — the finished result, in full.",
+      "text": "A short walkthrough of one of our completed projects at Ocean Village Marina, Southampton: the finished result, in full.",
+      "file": "/assets/video/marina-garden.mp4",
+      "poster": "/assets/img/marina-video-cover.jpg",
       "facebookVideoUrl": "https://www.facebook.com/100063790661207/videos/1283085960207935/"
     },
     "footer": {
@@ -281,7 +283,7 @@
       "intro": "Tell us a little about your garden and we'll be in touch to book your free site visit. It takes about 60 seconds.",
       "points": [
         "Free, no-obligation quotation",
-        "Fixed price — no day-rate surprises",
+        "Fixed price, no day-rate surprises",
         "Written quote within a week"
       ]
     },
@@ -311,11 +313,11 @@
   "faqs": [
     {
       "question": "How much does a new patio cost?",
-      "answer": "Every garden is different, so we price each job properly rather than quoting a rate per square metre. What moves the price is access to the garden, the materials you choose, how much preparation the area needs, the location, and whether any plant or equipment has to be hired in. We visit, measure up and give you a fixed written quote — free, with no obligation."
+      "answer": "Every garden is different, so we price each job properly rather than quoting a rate per square metre. What moves the price is access to the garden, the materials you choose, how much preparation the area needs, the location, and whether any plant or equipment has to be hired in. We visit, measure up and give you a fixed written quote, free and with no obligation."
     },
     {
       "question": "Do you offer free quotes?",
-      "answer": "Yes — every quote is free and no-obligation. We visit, measure up, discuss options and follow up with a clear fixed price within a week. No pressure and no charge for the visit."
+      "answer": "Yes, every quote is free and no-obligation. We visit, measure up, discuss options and follow up with a clear fixed price within a week. No pressure and no charge for the visit."
     },
     {
       "question": "How long does a typical project take?",
@@ -323,19 +325,19 @@
     },
     {
       "question": "Are you insured?",
-      "answer": "Yes — we carry £1m public liability insurance and are a registered waste carrier, so all spoil and waste is removed and disposed of legally. We can provide our waste carrier registration number on request."
+      "answer": "Yes, we carry £1m public liability insurance and are a registered waste carrier, so all spoil and waste is removed and disposed of legally. We can provide our waste carrier registration number on request."
     },
     {
       "question": "Do you use subcontractors?",
-      "answer": "The landscaping itself is done by our own team. For specialist work such as electrics and plumbing we bring in trusted trades we have worked with for years — but we manage the project from start to finish and stay accountable for it."
+      "answer": "The landscaping itself is done by our own team. For specialist work such as electrics and plumbing we bring in trusted trades we have worked with for years, but we manage the project from start to finish and stay accountable for it."
     },
     {
       "question": "What areas do you cover?",
-      "answer": "We are based in Ferndown and cover roughly a 30-mile radius — including Bournemouth, Poole, Christchurch, Wimborne, Verwood, Wareham and the surrounding towns. If you are just outside, ask anyway."
+      "answer": "We are based in Ferndown and cover roughly a 30-mile radius, including Bournemouth, Poole, Christchurch, Wimborne, Verwood, Wareham and the surrounding towns. If you are just outside, ask anyway."
     },
     {
       "question": "Do you offer a guarantee?",
-      "answer": "Yes — all our hard landscaping comes with a 12-month workmanship guarantee, set out in writing in your quote. Planting is not covered by a guarantee, as how well plants establish depends on aftercare, weather and soil conditions we cannot control."
+      "answer": "Yes, all our hard landscaping comes with a 12-month workmanship guarantee, set out in writing in your quote. Planting is not covered by a guarantee, as how well plants establish depends on aftercare, weather and soil conditions we cannot control."
     },
     {
       "question": "How do I get started?",

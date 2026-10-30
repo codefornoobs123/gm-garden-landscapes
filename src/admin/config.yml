@@ -27,13 +27,13 @@ collections:
             name: contact
             widget: object
             collapsed: true
-            hint: "These show on every page of the website – header, footer, buttons and Google."
+            hint: "These show on every page of the website: header, footer, buttons and Google."
             fields:
               - { label: "Phone number (as people see it)", name: phone, widget: string, hint: "e.g. 07515 341284" }
               - { label: "Phone number for the 'Call' buttons", name: phoneLink, widget: string, hint: "Same number in international format with no spaces, e.g. +447515341284", pattern: ['^\+44\d{9,10}$', "Start with +44 and use no spaces, e.g. +447515341284"] }
               - { label: "Email address", name: email, widget: string, hint: "Where customers can email you. Quote-form enquiries are set up separately in Netlify." }
               - { label: "Where you're based", name: location, widget: string, hint: "e.g. Ferndown, Dorset" }
-              - { label: "Opening hours (as people see them)", name: hoursText, widget: string, hint: "e.g. Mon–Fri 8am–4pm" }
+              - { label: "Opening hours (as people see them)", name: hoursText, widget: string, hint: "e.g. Mon to Fri, 8am to 4pm" }
               - label: "Days you're open (for Google)"
                 name: openingDays
                 widget: select
@@ -51,11 +51,11 @@ collections:
             collapsed: true
             add_to_top: true
             label_singular: "review"
-            summary: "{{fields.rating}}★  {{fields.name}} – {{fields.location}}"
+            summary: "{{fields.rating}}★  {{fields.name}}, {{fields.location}}"
             hint: >-
               To add one: press 'Add review' below, fill in the boxes, then press Publish (top right).
               New reviews go to the front. Drag the ≡ handle to change the order, or press × to remove one.
-              Only add real reviews from real customers – copying one from Google or Facebook is perfect.
+              Only add real reviews from real customers. Copying one from Google or Facebook is perfect.
             fields:
               - { label: "Customer name", name: name, widget: string, hint: "First name and surname initial, e.g. Tina B" }
               - { label: "Town (optional)", name: location, widget: string, required: false, hint: "e.g. Ferndown" }
@@ -69,7 +69,7 @@ collections:
                   - { label: "★★★☆☆  3 stars", value: 3 }
                   - { label: "★★☆☆☆  2 stars", value: 2 }
                   - { label: "★☆☆☆☆  1 star", value: 1 }
-              - { label: "What they said", name: text, widget: text, hint: "Paste their review here. Long reviews are fine – the website shows the start with a 'Read more' button. Leave a blank line between paragraphs." }
+              - { label: "What they said", name: text, widget: text, hint: "Paste their review here. Long reviews are fine. The website shows the start with a 'Read more' button. Leave a blank line between paragraphs." }
 
           # ───────────────────────────────── 📸 Photos
           - label: "📸 Photos of our work"
@@ -78,7 +78,7 @@ collections:
             collapsed: true
             label_singular: "project"
             summary: "{{fields.title}}"
-            hint: "The 'finished result' gallery. Each project can have several photos – the first one is the cover."
+            hint: "The 'finished result' gallery. Each project can have several photos. The first one is the cover."
             fields:
               - { label: "Project name", name: title, widget: string }
               - { label: "Town (optional)", name: location, widget: string, required: false }
@@ -118,7 +118,7 @@ collections:
                 widget: list
                 collapsed: true
                 label_singular: "before & after"
-                summary: "{{fields.title}} – {{fields.location}}"
+                summary: "{{fields.title}}, {{fields.location}}"
                 fields:
                   - { label: "Title", name: title, widget: string }
                   - { label: "Town", name: location, widget: string }
@@ -174,8 +174,8 @@ collections:
                 collapsed: true
                 fields:
                   - { label: "Small line above the headline", name: kicker, widget: string }
-                  - { label: "Headline – line 1", name: headlineLine1, widget: string }
-                  - { label: "Headline – line 2", name: headlineLine2, widget: string }
+                  - { label: "Headline: line 1", name: headlineLine1, widget: string }
+                  - { label: "Headline: line 2", name: headlineLine2, widget: string }
                   - { label: "Word to highlight", name: headlineAccent, widget: string, required: false, hint: "One word from the headline, copied exactly (e.g. redrawn). It shows in green italics. Leave empty for no highlight." }
                   - { label: "Text under the headline", name: subtext, widget: text }
                   - { label: "Short text for phones", name: subtextShort, widget: string, required: false, hint: "One short line shown on phones instead of the text above, so the photo stays visible. Keep it under 60 characters. Leave empty to show the full text on phones too." }
@@ -190,7 +190,7 @@ collections:
                 widget: list
                 collapsed: true
                 label_singular: "number"
-                summary: "{{fields.number}}{{fields.suffix}} – {{fields.label}}"
+                summary: "{{fields.number}}{{fields.suffix}}, {{fields.label}}"
                 hint: "The 4 numbers that count up. Four looks best."
                 fields:
                   - { label: "Number", name: number, widget: number, value_type: int, min: 0 }
@@ -205,7 +205,9 @@ collections:
                   - { label: "Small heading", name: eyebrow, widget: string }
                   - { label: "Heading", name: heading, widget: string }
                   - { label: "Text", name: text, widget: text }
-                  - { label: "Facebook video link", name: facebookVideoUrl, widget: string, hint: "Open the video on Facebook and copy the link from the address bar." }
+                  - { label: "Video file", name: file, widget: file, required: false, media_folder: "/src/assets/video", public_folder: "/assets/video", hint: "An MP4 filmed upright on your phone, under about 20 MB. Visitors press play to watch it with sound. Leave empty to show the Facebook video below instead." }
+                  - { label: "Video cover picture", name: poster, widget: image, required: false, hint: "The still people see before they press play. Use a bright shot of the finished garden." }
+                  - { label: "Facebook video link", name: facebookVideoUrl, widget: string, required: false, hint: "Only used when there is no video file above. Open the video on Facebook and copy the link from the address bar." }
               - label: "Our work section"
                 name: work
                 widget: object
@@ -223,7 +225,7 @@ collections:
                 fields:
                   - { label: "Small heading", name: eyebrow, widget: string }
                   - { label: "Heading", name: heading, widget: string }
-                  - { label: "Heading – end part (in green)", name: headingHighlight, widget: string }
+                  - { label: "Heading: end part (in green)", name: headingHighlight, widget: string }
                   - { label: "Text", name: paragraphs, widget: text, hint: "Leave a blank line between paragraphs." }
                   - label: "Three selling points"
                     name: values
@@ -231,7 +233,7 @@ collections:
                     collapsed: true
                     label_singular: "selling point"
                     summary: "{{fields.title}}"
-                    hint: "Keep to three – each has its own icon."
+                    hint: "Keep to three. Each has its own icon."
                     fields:
                       - { label: "Title", name: title, widget: string }
                       - { label: "Text", name: text, widget: string }
@@ -255,7 +257,7 @@ collections:
                 name: quote
                 widget: object
                 collapsed: true
-                hint: "Just the wording – the form itself stays the same."
+                hint: "Just the wording. The form itself stays the same."
                 fields:
                   - { label: "Small heading", name: eyebrow, widget: string }
                   - { label: "Heading", name: heading, widget: string }
