@@ -291,7 +291,7 @@
         "title": "Thanks{name}, that's with {owner}.",
         "text": "{owner} will call you {replyTime} to book a free site visit. Your fixed written quote follows within a week.",
         "replyTime": "within one working day",
-        "proof": "“Tidy, efficient and friendly workers with a high level of attention to detail.” Tina B, Ferndown",
+        "proof": "“Tidy, efficient and friendly workers with a high level of attention to detail.” Tina B, Ferndown",
         "photosButton": "Text {owner} your photos",
         "photosMessage": "Hi {owner}, here are some photos for my quote.",
         "photosNote": "Got photos of the garden? You can text them to {owner} straight after you send this. It helps him quote accurately.",
